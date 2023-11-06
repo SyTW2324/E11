@@ -1,0 +1,15 @@
+.category-container{
+    font-family: Roboto, sans-serif;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(112, 192, 32);
+    height: 200px;
+    width: 200px;
+}
+
+p{
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 0;
+    text-align: center;
+}

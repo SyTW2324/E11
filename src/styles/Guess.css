@@ -1,0 +1,28 @@
+.guess-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2em;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.5);
+    background-color: burlywood;
+    width: 1500px;
+    height: 250px;
+}
+
+img {
+    width: 200; /* Set the width */
+    height: 200px; /* Set the height */
+    margin-left: 30px;
+}
+
+.guess-categories{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    gap: 2em;
+    height: 250px;
+    width: auto;
+}

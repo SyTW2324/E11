@@ -1,4 +1,5 @@
 import React from 'react';
+import '../styles/Category.css';
 
 interface GuessProps {
   title: string;
@@ -9,6 +10,7 @@ function Category(props: GuessProps) {
   return (
     <div className='category-container'>
       <p> {props.title} </p>
+      <hr />
       <p> {props.category} </p>
     </div>
   )
