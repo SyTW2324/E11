@@ -15,3 +15,4 @@ function Category(props: GuessProps) {
 }
 
 export default Category;
+
