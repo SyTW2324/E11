@@ -15,7 +15,7 @@ animalsRouter.get("/", async (request, response) => {
     const animals = await animalsCollection.find({}).toArray();
     response.send(animals).status(200);
   } catch (error) {
-    response.status(500).send(error.message);
+    response.status(500).send(error);
   }
 });
 
@@ -34,6 +34,6 @@ animalsRouter.get("/:name", async (request, response) => {
     }
     response.send(animal).status(200);
   } catch (error) {
-    response.status(500).send(error.message);
+    response.status(500).send(error);
   }
 });
