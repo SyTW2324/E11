@@ -6,7 +6,9 @@
 html, 
 body {
   font-size: 18px;
-  background-color: salmon;
+  background: rgb(195,115,34);
+  background: linear-gradient(0deg, rgba(195,115,34,1) 13%, rgba(250,128,114,1) 100%);
+  min-height: 100vh;
 }
 
 h1 {
@@ -29,4 +31,25 @@ h2 {
   align-items: center;
   justify-content: center;
   margin-top: 2em;
+}
+
+input{
+  width: 20em;
+  height: 2em;
+  margin: 1em;
+  border-radius: 5px;
+  border: 1px solid black;
+  padding-left: 1em;
+  font-size: 1em;
+  background-color: burlywood;
+}
+
+.guess-button{
+  width: 5em;
+  height: 2em;
+  margin: 1em;
+  border-radius: 5px;
+  border: 1px solid black;
+  font-size: 1em;
+  background-color: burlywood;
 }

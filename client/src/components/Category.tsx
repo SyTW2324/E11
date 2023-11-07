@@ -1,12 +1,12 @@
 import React from 'react';
 import '../styles/Category.css';
 
-interface GuessProps {
+interface CategoryProps {
   title: string;
   category: string;
 }
 
-function Category(props: GuessProps) {
+function Category(props: CategoryProps) {
   return (
     <div className='category-container'>
       <p> {props.title} </p>
