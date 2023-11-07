@@ -10,6 +10,7 @@ function Guess() {
       { title: 'Clase', category: 'Mamífero' },
       { title: 'Peso', category: '6000 kg' },
       { title: 'Altura', category: '3,3 m' },
+      { title: 'Dieta', category: 'Herbívoro' },
       { title: 'Hábitat', category: 'Sabana' },
       { title: 'Medio', category: 'Terrestre' }
     ]
