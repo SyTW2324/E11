@@ -19,8 +19,8 @@ connectToDatabase(ATLAS_URI)
     app.use(cors());
     app.use("/animals", animalsRouter);
 
-    app.listen(5200, () => {
-      console.log(`Server running at http://localhost:5200...`);
+    app.listen(5000, () => {
+      console.log(`Server running at http://localhost:5000...`);
     });
 
   })
