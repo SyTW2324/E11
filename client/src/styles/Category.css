@@ -19,12 +19,14 @@
     background: #ff000090 url(../images/menor.png);
     background-size: cover;
     background-repeat: no-repeat;
+    background-clip: border-box;
 }
 
 .category-greater{
     background: #ff000090 url(../images/mayor.png);
     background-size: cover;
     background-repeat: no-repeat;
+    background-clip: border-box;
 }
 
 .category-partial {

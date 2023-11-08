@@ -8,6 +8,7 @@ function GuessForm({
   onAnimalChange: (newAnimal: Animal) => void;
 }) {
   const [input, setInput] = useState("");
+  
 
   const handleChange = (event: any) => {
     setInput(event.target.value);
