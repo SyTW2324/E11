@@ -2,10 +2,25 @@
     font-family: Roboto, sans-serif;
     display: flex;
     flex-direction: column;
-    background-color: rgb(112, 192, 32);
     height: 10em;
     width: 10em;
     border-radius: 5px;
+}
+
+.category-incorrect{
+    background-color: #ff000090;
+}
+
+.category-correct{
+    background-color: rgb(32, 192, 32);
+}
+
+.category-lesser{
+    background-image: url(../images/menor.png), #ff000090;
+}
+
+.category-greater{
+    background-image: url(../images/mayor.png), #ff000090;
 }
 
 p{

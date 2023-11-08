@@ -21,7 +21,7 @@ function GuessForm({
     }
     const newGuess = input;
     try {
-      const response = await fetch(`http://localhost:5000/animals/${newGuess}`);
+      const response = await fetch(`http://localhost:5000/animals/name/${newGuess}`);
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
