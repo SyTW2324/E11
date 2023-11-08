@@ -17,17 +17,13 @@ export interface Animal {
 function GuessList() {
   const [guessList, setGuessList] = useState<Animal[]>([]);
 
-  const handleAnimalChange = (newAnimal: Animal) => {
-    addGuess(newAnimal);
-  };
-
   const addGuess = (newAnimal: Animal) => {
     setGuessList((prevGuessList) => [...prevGuessList, newAnimal]);
   };
 
   return (
     <>
-      <GuessForm onAnimalChange={handleAnimalChange} />
+      <GuessForm onAnimalChange={addGuess} />
       <div className="guess-list">
         {guessList.map((guess, index) => (
           <Guess key={index} animal={guess} />
