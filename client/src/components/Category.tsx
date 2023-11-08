@@ -15,6 +15,8 @@ function findCategoryClass(isCorrect: string) {
       return "category-greater";
     case "<":
       return "category-lesser";
+    case "=/=":
+      return "category-partial";
     default:
       return "category-incorrect";
   }
@@ -28,7 +30,11 @@ function Category(props: CategoryProps) {
       <div className={findCategoryClass(isCorrect)}>
         <p>{title}</p>
         <hr />
-        <p>{category}</p>
+        {Array.isArray(category) ? (
+          <p>{category.join("\n")}</p>
+        ) : (
+          <p>{category}</p>
+        )}
       </div>
     </div>
   );

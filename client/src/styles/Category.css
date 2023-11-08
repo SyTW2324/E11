@@ -16,11 +16,19 @@
 }
 
 .category-lesser{
-    background-image: url(../images/menor.png), #ff000090;
+    background: #ff000090 url(../images/menor.png);
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .category-greater{
-    background-image: url(../images/mayor.png), #ff000090;
+    background: #ff000090 url(../images/mayor.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.category-partial {
+    background-color: rgba(255, 140, 0, 0.735);
 }
 
 p{

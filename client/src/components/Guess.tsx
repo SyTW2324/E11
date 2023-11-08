@@ -17,13 +17,22 @@ function Guess(props: GuessProps) {
     category1: string | string[],
     category2: string | string[]
   ) {
-    return category1 === category2 ? "=" : "!=";
+    if (category1 === category2) {
+      return "=";
+    }
+    const array1 = Array.isArray(category1) ? category1 : [category1];
+    const array2 = Array.isArray(category2) ? category2 : [category2];
+
+    if (array1.some((element) => array2.includes(element))) {
+      return "=/=";
+    }
+    return "!=";
   }
 
   function compareNumbers(category1: number, category2: number) {
-    if (category1 > category2) {
+    if (category2 > category1) {
       return ">";
-    } else if (category1 < category2) {
+    } else if (category2 < category1) {
       return "<";
     }
     return "=";
