@@ -14,9 +14,13 @@ function GuessForm({
   };
 
   const handleSend = (event: any) => {
-    searchAnimal(event);
-    event.preventDefault();
-    setInput("");
+    if (input === "") {
+      event.preventDefault();
+      alert("Por favor ingresa un animal");
+    } else {
+      searchAnimal(event);
+      setInput("");
+    }
   };
 
   const searchAnimal = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -31,7 +35,6 @@ function GuessForm({
       onAnimalChange(data);
     } catch (error) {
       console.error("There was a problem with the fetch operation:", error);
-      // Handle the error here, e.g. show an error message to the user
     }
   };
 
@@ -43,7 +46,8 @@ function GuessForm({
           type="text"
           id="guess"
           value={input}
-          onChange={handleChange}></input>
+          onChange={handleChange}
+        />
         <button className="guess-button"> Adivinar </button>
       </form>
     </div>

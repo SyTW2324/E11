@@ -16,18 +16,13 @@ export interface Animal {
 
 function GuessList() {
   const [guessList, setGuessList] = useState<Animal[]>([]);
-  const [animal, setAnimal] = useState<Animal>();
 
   const handleAnimalChange = (newAnimal: Animal) => {
-    setAnimal(newAnimal);
-    addGuess();
+    addGuess(newAnimal);
   };
 
-  const addGuess = () => {
-    if (animal) {
-      setGuessList((prevGuessList) => [...prevGuessList, animal]);
-      console.log("nuevo animal");
-    }
+  const addGuess = (newAnimal: Animal) => {
+    setGuessList((prevGuessList) => [...prevGuessList, newAnimal]);
   };
 
   return (
