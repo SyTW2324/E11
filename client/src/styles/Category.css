@@ -1,28 +1,26 @@
-.category-container{
+.category-container {
     font-family: Roboto, sans-serif;
     display: flex;
     flex-direction: column;
-    height: 10em;
-    width: 10em;
     border-radius: 5px;
 }
 
-.category-incorrect{
+.category-incorrect {
     background-color: #ff000090;
 }
 
-.category-correct{
+.category-correct {
     background-color: rgb(32, 192, 32);
 }
 
-.category-lesser{
+.category-lesser {
     background: #ff000090 url(../images/menor.png);
     background-size: cover;
     background-repeat: no-repeat;
     background-clip: border-box;
 }
 
-.category-greater{
+.category-greater {
     background: #ff000090 url(../images/mayor.png);
     background-size: cover;
     background-repeat: no-repeat;
@@ -30,11 +28,11 @@
 }
 
 .category-partial {
-    background-color: rgba(255, 140, 0, 0.735);
+    background-color: rgba(255, 140, 0);
 }
 
-p{
-    font-size: 1.5em;
+p {
+    font-size: 1em;
     font-weight: bold;
     margin: 0;
     text-align: center;

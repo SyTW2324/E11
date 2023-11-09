@@ -6,13 +6,15 @@
     margin-top: 2em;
     box-shadow: 0 0 10px 0 rgba(0,0,0,0.5);
     background-color: burlywood;
-    width: 100em;
-    height: 15em;
+    width: 85vw; /* width relative to the viewport width */
+    height: 30vh; /* height relative to the viewport height */
+    border: 1px solid black; /* add border */
+
 }
 
 img {
-    width: 15em; /* Set the width */
-    height: 10em; /* Set the height */
+    max-width: 50%; /* Set the width */
+    height: auto; /* Set the height */
     margin-left: 2em;
     border-radius: 5px;
 }
@@ -24,4 +26,22 @@ img {
     justify-content: center;
     margin: auto;
     gap: 2em;
+    width: 100%;
 }
+
+/* Media query for mobile devices */
+@media (max-width: 600px) {
+    .guess-container{
+      width: 100vw;
+      height: 50vh;
+    }
+  
+    img {
+      width: 100%;
+      height: auto;
+    }
+  
+    .guess-categories{
+      width: 100%;
+    }
+  }

@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import Guess from "./Guess";
 import GuessForm from "./GuessForm";
+import "../styles/GuessList.css";
 
 export interface Animal {
   name: string;
@@ -39,7 +40,7 @@ function GuessList() {
   }, []);
 
   if (isLoading || !randomAnimal) {
-    return <div>Loading...</div>;
+    return (<div className="lds-dual-ring"></div>);
   }
 
   const addGuess = (newAnimal: Animal) => {
