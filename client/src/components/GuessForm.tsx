@@ -1,5 +1,5 @@
-import React, {useState} from "react";
-import {Animal} from "./GuessList";
+import React, { useState } from "react";
+import { Animal } from "./GuessList";
 import "../styles/GuessForm.css";
 
 function GuessForm({
@@ -8,7 +8,7 @@ function GuessForm({
   onAnimalChange: (newAnimal: Animal) => void;
 }) {
   const [input, setInput] = useState("");
-  
+
 
   const handleChange = (event: any) => {
     setInput(event.target.value);
@@ -28,6 +28,7 @@ function GuessForm({
       }
       const data = await response.json();
       onAnimalChange(data);
+      console.log(data);
       setInput("");
     } catch (error) {
       console.error("There was a problem with the fetch operation:", error);

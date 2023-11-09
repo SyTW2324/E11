@@ -1,5 +1,5 @@
 import React from "react";
-import {useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import Guess from "./Guess";
 import GuessForm from "./GuessForm";
 
@@ -28,7 +28,7 @@ function GuessList() {
           throw new Error("Network response was not ok");
         }
         const data = await response.json();
-        setRandomAnimal(data[0]);
+        setRandomAnimal(data);
       } catch (error) {
         console.error("There was a problem with the fetch operation:", error);
       }
