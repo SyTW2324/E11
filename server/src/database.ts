@@ -1,8 +1,10 @@
 import * as mongodb from "mongodb";
 import { Animal } from "./animals";
+import { User } from "./user";
 
 export const collections: {
   animals?: mongodb.Collection<Animal>;
+  users?: mongodb.Collection<User>;
 } = {};
 
 export async function connectToDatabase(uri: string) {
@@ -14,6 +16,9 @@ export async function connectToDatabase(uri: string) {
 
   const animalsCollection = db.collection<Animal>("animals");
   collections.animals = animalsCollection;
+
+  const usersCollection = db.collection<User>("users");
+  collections.users = usersCollection;
 }
 
 // Update our existing collection with JSON schema validation so we know our documents will always match the shape of our Employee model, even if added elsewhere.
