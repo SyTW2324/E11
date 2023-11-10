@@ -3,6 +3,7 @@ import cors from "cors";
 import express from "express";
 import {connectToDatabase} from "./database";
 import {animalsRouter} from "./animals.routes";
+import {userRouter} from "./user.routes";
 
 dotenv.config();
 
@@ -20,6 +21,7 @@ connectToDatabase(ATLAS_URI)
     const app = express();
     app.use(cors());
     app.use("/animals", animalsRouter);
+    app.use("/users", userRouter);
 
     app.listen(5000, () => {
       console.log(`Server running at http://localhost:5000...`);
