@@ -1,0 +1,44 @@
+* {
+    margin: 0;
+    padding: 0;
+  }
+  
+  html,
+  body {
+    font-size: 18px;
+    /*background: rgb(195,115,34);
+    background: linear-gradient(0deg, rgba(195,115,34,1) 13%, rgba(250,128,114,1) 100%);*/
+    background-image: url(../../src/images/Background.png);
+    min-height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+  
+  h1 {
+    font-size: 5em;
+    font-family: Roboto, sans-serif;
+    text-align: center;
+    margin-top: 1em;
+    color: rgb(184, 184, 184);
+    -webkit-text-stroke-width: 0.05em;
+    -webkit-text-stroke-color: black;
+  }
+  
+  h2 {
+    font-size: 2em;
+    font-family: Roboto, sans-serif;
+    text-align: center;
+    margin-top: 1em;
+    color: rgb(184, 184, 184);
+    -webkit-text-stroke-width: 0.05em;
+    -webkit-text-stroke-color: black;
+  }
+  
+  .main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2em;
+  }

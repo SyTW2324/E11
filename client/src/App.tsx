@@ -1,20 +1,26 @@
 import React from "react";
-import { useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
-import Guess from "./components/Guess";
-import GuessList from "./components/GuessList";
-//import 'bootstrap/dist/css/bootstrap.css';
+import Home from "./Pages/Home"; // Asegúrate de crear este componente
+import LoginRegister from "./Pages/LoginRegister";
+import Ranking from "./Pages/Ranking";
+import User from "./Pages/User";
 
 function App() {
   return (
-    <div className="App">
-      <div className="main-container">
-        <h1> Wildle </h1>
-        <h2> Adivina el animal de hoy </h2>
-        <GuessList />
-      </div>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route index element={<Home />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/loginRegister" element={<LoginRegister />} />
+        <Route path="/ranking" element={<Ranking />} />
+        <Route path="/user" element={<User />} />
+        <Route path="*" element={<h1>Not Found</h1>} />
+      </Routes>
+    </BrowserRouter>
   );
 }
+
+
 
 export default App;
