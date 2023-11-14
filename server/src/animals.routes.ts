@@ -1,5 +1,6 @@
 import * as express from "express";
-import {Animal} from "./animals";
+import * as mongodb from "mongodb";
+import { collections } from "./database";
 
 export const animalsRouter = express.Router();
 animalsRouter.use(express.json());
@@ -21,11 +22,14 @@ animalsRouter.get("/", async (_, response) => {
 
 animalsRouter.get("/random", async (_, response) => {
   try {
-    const randomAnimal = await Animal.aggregate([{$sample: {size: 1}}]);
-    if (!randomAnimal || randomAnimal.length === 0) {
-      throw new Error("No animals found in the collection");
+    const animalsCollection = collections.animals;
+    if (!animalsCollection) {
+      throw new Error("Animals collection not found");
     }
-    response.status(200).send(randomAnimal[0]);
+    const [animal] = await animalsCollection
+      .aggregate([{ $sample: { size: 1 } }])
+      .toArray();
+    response.status(200).send(animal);
   } catch (error) {
     console.error(error);
     response.status(500).send(error);
@@ -36,9 +40,11 @@ animalsRouter.get("/random", async (_, response) => {
 
 animalsRouter.get("/name/:name", async (request, response) => {
   try {
-    const animal = await Animal.findOne({
-      name: request.params.name,
-    });
+    const animalsCollection = collections.animals;
+    if (!animalsCollection) {
+      throw new Error("Animals collection not found");
+    }
+    const animal = await animalsCollection.findOne({ name: request.params.name });
     if (!animal) {
       response.status(404).send(`Animal ${request.params.name} not found`);
       return;
