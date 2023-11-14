@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import {AnimalInterface} from "../../../server/src/animals";
+import Autocomplete from "./Autocomplete";
+import { AnimalInterface } from "../../../server/src/animals";
 import "../styles/GuessForm.css";
 
 function GuessForm({
@@ -8,10 +9,26 @@ function GuessForm({
   onAnimalChange: (newAnimal: AnimalInterface) => void;
 }) {
   const [input, setInput] = useState("");
+  const [recomendations, setRecomendations] = useState<string[]>([])
+
+
+  const searchRecomendations = async (event: React.FormEvent<HTMLFormElement>) => {
+    try {
+      const response = await fetch(`http://localhost:5000/animals/name_like/${input}`)
+      if (!response.ok) {
+        throw new Error("Network response was not ok")
+      }
+      const data = await response.json()
+      setRecomendations(data.map((animal: AnimalInterface) => animal.name))
+    } catch (error) {
+      console.error("There was a problem with the fetch operation:", error)
+    }
+  }
 
 
   const handleChange = (event: any) => {
     setInput(event.target.value);
+    searchRecomendations(event.target.value)
   };
 
   const searchAnimal = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -44,8 +61,10 @@ function GuessForm({
           id="guess"
           value={input}
           onChange={handleChange}
+          autoComplete="off"
         />
         <button className="guess-button"> Adivinar </button>
+        {input && <Autocomplete recommendations={recomendations} setInput={setInput} />}
       </form>
     </div>
   );

@@ -1,9 +1,9 @@
 import React from "react";
-import {useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import Guess from "./Guess";
 import GuessForm from "./GuessForm";
 import "../styles/GuessList.css";
-import {AnimalInterface} from "../../../server/src/animals";
+import { AnimalInterface } from "../../../server/src/animals";
 
 function GuessList() {
   const [guessList, setGuessList] = useState<AnimalInterface[]>([]);
@@ -34,7 +34,14 @@ function GuessList() {
   }
 
   const addGuess = (newAnimal: AnimalInterface) => {
+    if (guessList.some((animal) => animal.name === newAnimal.name)) {
+      alert("Ya has adivinado este animal");
+      return;
+    }
     setGuessList((prevGuessList) => [...prevGuessList, newAnimal]);
+    if (newAnimal.name === randomAnimal.name) {
+      alert("Has acertado, ¡felicidades!");
+    }
   };
 
   return (

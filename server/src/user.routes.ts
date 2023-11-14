@@ -1,6 +1,6 @@
 import * as expresponses from "express";
 import * as mongodb from "mongodb";
-import {User} from "./user";
+import { User } from "./user";
 
 export const userRouter = expresponses.Router();
 userRouter.use(expresponses.json());
@@ -60,8 +60,8 @@ userRouter.post("/", async (request, response) => {
   }
 });
 
-// PUT /users/:id modificacion completa
-userRouter.put("/:id", async (request, response) => {
+// PATCH /users/:id modificacion con filtro
+userRouter.patch("/:id", async (request, response) => {
   try {
     const allowedUpdates = ["username", "password", "email", "image"];
     const updates = Object.keys(request.body);
@@ -69,7 +69,7 @@ userRouter.put("/:id", async (request, response) => {
       allowedUpdates.includes(update)
     );
     if (!isValidUpdate) {
-      response.status(400).send({error: "Invalid update"});
+      response.status(400).send({ error: "Invalid update" });
       return;
     }
     const user = await User.findOneAndUpdate(
@@ -77,7 +77,7 @@ userRouter.put("/:id", async (request, response) => {
         _id: new mongodb.ObjectId(request.params.id),
       },
       request.body,
-      {new: true, runValidators: true}
+      { new: true, runValidators: true }
     );
     if (!user) {
       response.status(404).send(`User ${request.params.id} not found`);
@@ -89,25 +89,26 @@ userRouter.put("/:id", async (request, response) => {
   }
 });
 
-/**
-// PATCH /users/:id modificacion parcial
-userRouter.patch("/:id", async (request, response) => {
+
+// PUT /users/:id modificacion total
+userRouter.put("/:id", async (request, response) => {
   try {
-    const usersCollection = collections.users;
-    if (!usersCollection) {
-      throw new Error("User collection not found");
-    }
-    const user = request.body;
-    const result = await usersCollection.updateOne(
-      {_id: new mongodb.ObjectId(request.params.id)},
-      {$set: user}
+    const user = await User.findOneAndReplace(
+      {
+        _id: new mongodb.ObjectId(request.params.id),
+      },
+      request.body,
+      { new: true, runValidators: true }
     );
-    response.status(200).send(result);
+    if (!user) {
+      response.status(404).send(`User ${request.params.id} not found`);
+      return;
+    }
+    response.status(200).send(user);
   } catch (error) {
     response.status(500).send(error);
   }
 });
-*/
 
 // DELETE /users/:id
 userRouter.delete("/:id", async (request, response) => {

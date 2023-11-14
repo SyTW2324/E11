@@ -27,3 +27,7 @@
     transform: rotate(360deg);
   }
 }
+
+.guess-list {
+  z-index: 0;
+}

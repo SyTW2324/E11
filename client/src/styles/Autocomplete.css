@@ -1,0 +1,19 @@
+.autocomplete-container {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.7);
+  width: 20em;
+  padding-left: 1em;
+  flex: 1;
+  border-radius: 5px;
+  border: 1px solid black;
+  z-index: 1;
+
+}
+
+.autocomplete-item {
+  padding: 1em;
+  cursor: pointer;
+  border-bottom: 1px solid #d4d4d4;
+  font-size: 0.75em;
+  justify-content: left;
+}
