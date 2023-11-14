@@ -13,10 +13,19 @@
 }
 
 img {
-    max-width: 50%; /* Set the width */
-    height: auto; /* Set the height */
+    width: 15vw; /* Set the width */
+    height: 15vw; /* Set the height */
     margin-left: 2em;
     border-radius: 5px;
+}
+
+.guess-image{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 100%;
 }
 
 .guess-categories{

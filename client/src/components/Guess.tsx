@@ -2,44 +2,43 @@ import React from "react";
 import {useState} from "react";
 import Category from "./Category";
 import "../styles/Guess.css";
-import {Animal} from "./GuessList";
+import {AnimalInterface} from "../../../server/src/animals";
 
 interface GuessProps {
-  animal: Animal;
-  random: Animal | null;
+  animal: AnimalInterface;
+  random: AnimalInterface | null;
 }
 
 function Guess(props: GuessProps) {
   if (!props.random) {
     return null;
   }
-  function compareStrings(
-    category1: string | string[],
-    category2: string | string[]
-  ) {
-    const array1 = Array.isArray(category1) ? category1 : [category1];
-    const array2 = Array.isArray(category2) ? category2 : [category2];
-
+  function compareStringArrays(category1: string[], category2: string[]) {
     if (
-      array2.every((element) => array1.includes(element)) &&
-      array1.every((element) => array2.includes(element))
+      category2.every((element) => category1.includes(element)) &&
+      category1.every((element) => category2.includes(element))
     ) {
       return "=";
     }
-    if (array1.some((element) => array2.includes(element))) {
+    if (category1.some((element) => category2.includes(element))) {
       return "=/=";
     }
     return "!=";
   }
 
   function compareNumbers(category1: number, category2: number) {
-    console.log(category2, category1);
     if (category2 > category1) {
       return ">";
     } else if (category2 < category1) {
       return "<";
     }
     return "=";
+  }
+  function compareStrings(category1: string, category2: string) {
+    if (category1 === category2) {
+      return "=";
+    }
+    return "!=";
   }
 
   return (
@@ -68,10 +67,10 @@ function Guess(props: GuessProps) {
         />
         <Category
           title="Altura(m)"
-          category={props.animal.size}
+          category={props.animal.height}
           isCorrect={
             props.random
-              ? compareNumbers(props.animal.size, props.random.size)
+              ? compareNumbers(props.animal.height, props.random.height)
               : "!="
           }
         />
@@ -89,7 +88,7 @@ function Guess(props: GuessProps) {
           category={props.animal.habitat}
           isCorrect={
             props.random
-              ? compareStrings(props.animal.habitat, props.random.habitat)
+              ? compareStringArrays(props.animal.habitat, props.random.habitat)
               : "!="
           }
         />
@@ -98,7 +97,7 @@ function Guess(props: GuessProps) {
           category={props.animal.medium}
           isCorrect={
             props.random
-              ? compareStrings(props.animal.medium, props.random.medium)
+              ? compareStringArrays(props.animal.medium, props.random.medium)
               : "!="
           }
         />

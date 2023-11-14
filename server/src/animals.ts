@@ -8,8 +8,8 @@ export interface AnimalInterface extends Document {
   weight: number;
   height: number;
   diet: string;
-  habitat: string;
-  medium: string;
+  habitat: string[];
+  medium: string[];
   _id?: mongodb.ObjectId;
 }
 
@@ -50,15 +50,19 @@ const AnimalSchema = new Schema<AnimalInterface>({
     required: true,
     enum: ["Carnívoro", "Herbívoro", "Omnívoro"],
   },
-  habitat: {
-    type: String,
-    required: true,
-  },
-  medium: {
-    type: String,
-    required: true,
-    enum: ["Tierra", "Agua", "Aire"],
-  },
+  habitat: [
+    {
+      type: String,
+      required: true,
+    },
+  ],
+  medium: [
+    {
+      type: String,
+      required: true,
+      enum: ["Tierra", "Agua", "Aire"],
+    },
+  ],
 });
 
 export const Animal = model<AnimalInterface>("Animal", AnimalSchema);

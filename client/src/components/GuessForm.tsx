@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { Animal } from "./GuessList";
+import {AnimalInterface} from "../../../server/src/animals";
 import "../styles/GuessForm.css";
 
 function GuessForm({
   onAnimalChange,
 }: {
-  onAnimalChange: (newAnimal: Animal) => void;
+  onAnimalChange: (newAnimal: AnimalInterface) => void;
 }) {
   const [input, setInput] = useState("");
 

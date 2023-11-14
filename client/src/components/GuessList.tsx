@@ -3,21 +3,11 @@ import {useState, useEffect} from "react";
 import Guess from "./Guess";
 import GuessForm from "./GuessForm";
 import "../styles/GuessList.css";
-
-export interface Animal {
-  name: string;
-  class: string;
-  weight: number;
-  size: number;
-  diet: string;
-  habitat: string;
-  medium: string;
-  image: string;
-}
+import {AnimalInterface} from "../../../server/src/animals";
 
 function GuessList() {
-  const [guessList, setGuessList] = useState<Animal[]>([]);
-  const [randomAnimal, setRandomAnimal] = useState<Animal | null>(null);
+  const [guessList, setGuessList] = useState<AnimalInterface[]>([]);
+  const [randomAnimal, setRandomAnimal] = useState<AnimalInterface | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -29,7 +19,6 @@ function GuessList() {
           throw new Error("Network response was not ok");
         }
         const data = await response.json();
-        console.log(data);
         setRandomAnimal(data);
       } catch (error) {
         console.error("There was a problem with the fetch operation:", error);
@@ -44,7 +33,7 @@ function GuessList() {
     return <div className="lds-dual-ring"></div>;
   }
 
-  const addGuess = (newAnimal: Animal) => {
+  const addGuess = (newAnimal: AnimalInterface) => {
     setGuessList((prevGuessList) => [...prevGuessList, newAnimal]);
   };
 

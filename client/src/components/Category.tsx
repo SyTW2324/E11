@@ -3,7 +3,7 @@ import "../styles/Category.css";
 
 interface CategoryProps {
   title: string;
-  category: string | number;
+  category: string | number | string[];
   isCorrect: string;
 }
 
