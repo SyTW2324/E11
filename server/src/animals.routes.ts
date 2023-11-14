@@ -1,18 +1,16 @@
 import * as express from "express";
-import * as mongodb from "mongodb";
-import {collections} from "./database";
+import {Animal} from "./animals";
 
 export const animalsRouter = express.Router();
 animalsRouter.use(express.json());
 
 // GET /animals
-animalsRouter.get("/", async (request, response) => {
+animalsRouter.get("/", async (_, response) => {
   try {
-    const animalsCollection = collections.animals;
-    if (!animalsCollection) {
+    const animals = await Animal.find({});
+    if (!animals) {
       throw new Error("Animals collection not found");
     }
-    const animals = await animalsCollection.find({}).toArray();
     response.status(200).send(animals);
   } catch (error) {
     response.status(500).send(error);
@@ -21,16 +19,13 @@ animalsRouter.get("/", async (request, response) => {
 
 // GET /animals/random
 
-animalsRouter.get("/random", async (request, response) => {
+animalsRouter.get("/random", async (_, response) => {
   try {
-    const animalsCollection = collections.animals;
-    if (!animalsCollection) {
+    const randomAnimal = await Animal.aggregate().sample(1);
+    if (!randomAnimal) {
       throw new Error("Animals collection not found");
     }
-    const [animal] = await animalsCollection
-      .aggregate([{$sample: {size: 1}}])
-      .toArray();
-    response.status(200).send(animal);
+    response.status(200).send(randomAnimal);
   } catch (error) {
     response.status(500).send(error);
   }
@@ -40,11 +35,9 @@ animalsRouter.get("/random", async (request, response) => {
 
 animalsRouter.get("/name/:name", async (request, response) => {
   try {
-    const animalsCollection = collections.animals;
-    if (!animalsCollection) {
-      throw new Error("Animals collection not found");
-    }
-    const animal = await animalsCollection.findOne({name: request.params.name});
+    const animal = await Animal.findOne({
+      name: request.params.name,
+    });
     if (!animal) {
       response.status(404).send(`Animal ${request.params.name} not found`);
       return;

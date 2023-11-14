@@ -1,19 +1,18 @@
 import * as expresponses from "express";
 import * as mongodb from "mongodb";
-import { collections } from "./database";
+import {User} from "./user";
 
 export const userRouter = expresponses.Router();
 userRouter.use(expresponses.json());
 
 // GET /users buscar todos
-userRouter.get("/", async (request, response) => {
+userRouter.get("/", async (_, response) => {
   try {
-    const usersCollection = collections.users;
-    if (!usersCollection) {
+    const users = await User.find({});
+    if (!users) {
       throw new Error("User collection not found");
     }
-    const user = await usersCollection.find({}).toArray();
-    response.status(200).send(user);
+    response.status(200).send(users);
   } catch (error) {
     response.status(500).send(error);
   }
@@ -22,11 +21,7 @@ userRouter.get("/", async (request, response) => {
 // GET /users/:id buscar por id
 userRouter.get("/:id", async (request, response) => {
   try {
-    const usersCollection = collections.users;
-    if (!usersCollection) {
-      throw new Error("User collection not found");
-    }
-    const user = await usersCollection.findOne({
+    const user = await User.findOne({
       _id: new mongodb.ObjectId(request.params.id),
     });
     if (!user) {
@@ -42,12 +37,8 @@ userRouter.get("/:id", async (request, response) => {
 // GET /users/:name buscar por nombre
 userRouter.get("/name/:name", async (request, response) => {
   try {
-    const usersCollection = collections.users;
-    if (!usersCollection) {
-      throw new Error("User collection not found");
-    }
-    const user = await usersCollection.findOne({
-      name: request.params.name,
+    const user = await User.findOne({
+      username: request.params.name,
     });
     if (!user) {
       response.status(404).send(`User ${request.params.name} not found`);
@@ -61,12 +52,8 @@ userRouter.get("/name/:name", async (request, response) => {
 // POST /user crear un nuevo user
 userRouter.post("/", async (request, response) => {
   try {
-    const usersCollection = collections.users;
-    if (!usersCollection) {
-      throw new Error("User collection not found");
-    }
-    const user = request.body;
-    const result = await usersCollection.insertOne(user);
+    const user = new User(request.body);
+    const result = await user.save();
     response.status(200).send(result);
   } catch (error) {
     response.status(500).send(error);
@@ -76,21 +63,33 @@ userRouter.post("/", async (request, response) => {
 // PUT /users/:id modificacion completa
 userRouter.put("/:id", async (request, response) => {
   try {
-    const usersCollection = collections.users;
-    if (!usersCollection) {
-      throw new Error("User collection not found");
-    }
-    const user = request.body;
-    const result = await usersCollection.replaceOne(
-      { _id: new mongodb.ObjectId(request.params.id) },
-      user
+    const allowedUpdates = ["username", "password", "email", "image"];
+    const updates = Object.keys(request.body);
+    const isValidUpdate = updates.every((update) =>
+      allowedUpdates.includes(update)
     );
-    response.status(200).send(result);
+    if (!isValidUpdate) {
+      response.status(400).send({error: "Invalid update"});
+      return;
+    }
+    const user = await User.findOneAndUpdate(
+      {
+        _id: new mongodb.ObjectId(request.params.id),
+      },
+      request.body,
+      {new: true, runValidators: true}
+    );
+    if (!user) {
+      response.status(404).send(`User ${request.params.id} not found`);
+      return;
+    }
+    response.status(200).send(user);
   } catch (error) {
     response.status(500).send(error);
   }
 });
 
+/**
 // PATCH /users/:id modificacion parcial
 userRouter.patch("/:id", async (request, response) => {
   try {
@@ -100,23 +99,40 @@ userRouter.patch("/:id", async (request, response) => {
     }
     const user = request.body;
     const result = await usersCollection.updateOne(
-      { _id: new mongodb.ObjectId(request.params.id) },
-      { $set: user }
+      {_id: new mongodb.ObjectId(request.params.id)},
+      {$set: user}
     );
     response.status(200).send(result);
   } catch (error) {
     response.status(500).send(error);
   }
 });
+*/
 
 // DELETE /users/:id
 userRouter.delete("/:id", async (request, response) => {
   try {
-    const usersCollection = collections.users;
-    if (!usersCollection) {
+    const deletedUser = await User.findOne({
+      _id: new mongodb.ObjectId(request.params.id),
+    });
+    if (!deletedUser) {
+      response.status(404).send(`User ${request.params.id} not found`);
+      return;
+    }
+    const users = await User.find({});
+    if (!users) {
       throw new Error("User collection not found");
     }
-    const result = await usersCollection.deleteOne({
+    users.forEach(async (user) => {
+      if (user.friends) {
+        const index = user.friends.indexOf(deletedUser._id);
+        if (index > -1) {
+          user.friends.splice(index, 1);
+          await user.save();
+        }
+      }
+    });
+    const result = await User.deleteOne({
       _id: new mongodb.ObjectId(request.params.id),
     });
     response.status(200).send(result);
