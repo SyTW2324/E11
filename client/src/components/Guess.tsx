@@ -1,8 +1,8 @@
 import React from "react";
-import { useState } from "react";
+import {useState} from "react";
 import Category from "./Category";
 import "../styles/Guess.css";
-import { Animal } from "./GuessList";
+import {Animal} from "./GuessList";
 
 interface GuessProps {
   animal: Animal;
@@ -20,17 +20,20 @@ function Guess(props: GuessProps) {
     const array1 = Array.isArray(category1) ? category1 : [category1];
     const array2 = Array.isArray(category2) ? category2 : [category2];
 
-    if (array2.every(element => array1.includes(element))
-    && array1.every(element => array2.includes(element))) {
-      return '=';
+    if (
+      array2.every((element) => array1.includes(element)) &&
+      array1.every((element) => array2.includes(element))
+    ) {
+      return "=";
     }
-    if (array1.some(element => array2.includes(element))) {
-      return '=/=';
+    if (array1.some((element) => array2.includes(element))) {
+      return "=/=";
     }
-    return '!=';
+    return "!=";
   }
 
   function compareNumbers(category1: number, category2: number) {
+    console.log(category2, category1);
     if (category2 > category1) {
       return ">";
     } else if (category2 < category1) {

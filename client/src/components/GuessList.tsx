@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import {useState, useEffect} from "react";
 import Guess from "./Guess";
 import GuessForm from "./GuessForm";
 import "../styles/GuessList.css";
@@ -29,6 +29,7 @@ function GuessList() {
           throw new Error("Network response was not ok");
         }
         const data = await response.json();
+        console.log(data);
         setRandomAnimal(data);
       } catch (error) {
         console.error("There was a problem with the fetch operation:", error);
@@ -40,7 +41,7 @@ function GuessList() {
   }, []);
 
   if (isLoading || !randomAnimal) {
-    return (<div className="lds-dual-ring"></div>);
+    return <div className="lds-dual-ring"></div>;
   }
 
   const addGuess = (newAnimal: Animal) => {

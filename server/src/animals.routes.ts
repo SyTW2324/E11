@@ -21,17 +21,18 @@ animalsRouter.get("/", async (_, response) => {
 
 animalsRouter.get("/random", async (_, response) => {
   try {
-    const randomAnimal = await Animal.aggregate().sample(1);
-    if (!randomAnimal) {
-      throw new Error("Animals collection not found");
+    const randomAnimal = await Animal.aggregate([{$sample: {size: 1}}]);
+    if (!randomAnimal || randomAnimal.length === 0) {
+      throw new Error("No animals found in the collection");
     }
-    response.status(200).send(randomAnimal);
+    response.status(200).send(randomAnimal[0]);
   } catch (error) {
+    console.error(error);
     response.status(500).send(error);
   }
 });
 
-// GET /animals/:name
+// GET /animals/name/:name
 
 animalsRouter.get("/name/:name", async (request, response) => {
   try {

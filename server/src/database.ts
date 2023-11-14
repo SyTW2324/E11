@@ -1,14 +1,14 @@
 import {connect} from "mongoose";
-import * as dotenv from "dotenv";
+import dotenv from "dotenv";
 
 dotenv.config();
 
 try {
   connect(
     process.env.ATLAS_URI ||
-      "mongodb+srv://admin:admin@cluster0.2wuhxag.mongodb.net/?retryWrites=true&w=majority"
+      "mongodb+srv://user:user@cluster0.2wuhxag.mongodb.net/wildle?retryWrites=true&w=majority"
   );
-  console.log("Database connected");
+  console.log("Connected to database");
 } catch (error) {
   console.error(error);
   process.exit(1);
