@@ -1,6 +1,7 @@
 
 import Header from "../components/Header";
 import GuessList from "../components/GuessList";
+import Footer from "../components/Footer";
 import "../styles/Home.css";
 
 function Home() {
@@ -11,6 +12,7 @@ function Home() {
         <h2> Adivina el animal de hoy </h2>
         <GuessList />
       </div>
+      <Footer />
     </div>
   );
 }
