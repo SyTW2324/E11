@@ -4,9 +4,11 @@ import email from "../images/email.png";
 import password from "../images/password.png";
 import user from "../images/user.png";
 import "../styles/LoginRegister.css";
+import Register from "../components/RegisterForm";
+import Login from "../components/LoginForm";
 
 function LoginRegister() {
-  const [action, setAction] = useState("Sign In");
+  const [action, setAction] = useState("Sign Up");
 
   return (
     <>
