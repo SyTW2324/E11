@@ -9,18 +9,6 @@
     height: 80%;
     justify-content: space-between;
     align-items: center;
-    border-radius: 5%;
-    background: burlywood;
-}
-
-
-
-.login-icon {
-    display: flex;
-    border-radius: 50%;
-    background-color: white;
-    border: 2px solid black;
-
 }
 
 
@@ -46,12 +34,21 @@
     display: flex;
     border-radius: 50%;
     background-color: white;
-    border: 2px solid black;
 }
 
-.ranking-icon {
+.ranking-icon, .login-icon {
     display: flex;
     border-radius: 50%;  
     background-color: white;
-    border: 2px solid black;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+}
+
+img {
+    width: 30%;
+    height: auto;
+    margin: 0;
+    padding: 0;
 }
