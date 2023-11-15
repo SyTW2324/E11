@@ -13,42 +13,48 @@
 
 
 .circle-container {
-    width: 100px; /* Ancho del contenedor, ajusta según sea necesario */
-    height: 100px; /* Altura del contenedor, ajusta según sea necesario */
+    width: 100px;
+    /* Ancho del contenedor, ajusta según sea necesario */
+    height: 100px;
+    /* Altura del contenedor, ajusta según sea necesario */
     display: flex;
     align-items: center;
     justify-content: center;
-  }
+}
 
-  .circle {
+.circle {
     display: flex;
-    width: 100%; /* Esto hará que el círculo tenga el mismo ancho que el contenedor */
-    padding-bottom: 100%; /* Esto establecerá la altura del círculo igual al ancho, creando así un círculo perfecto */
+    width: 100%;
+    /* Esto hará que el círculo tenga el mismo ancho que el contenedor */
+    padding-bottom: 100%;
+    /* Esto establecerá la altura del círculo igual al ancho, creando así un círculo perfecto */
     background-color: white;
     border-radius: 50%;
     /* Estilos adicionales si es necesario */
-  }
+}
 
 
 .title-icon {
     display: flex;
     border-radius: 50%;
-    background-color: white;
 }
 
-.ranking-icon, .login-icon {
+.ranking-icon,
+.login-icon {
     display: flex;
-    border-radius: 50%;  
-    background-color: white;
+    border-radius: 50%;
     justify-content: center;
+    background-color: white;
+    border: 2px solid black;
     align-items: center;
-    padding: 0;
-    margin: 0;
+    height: 100px;
+    width: 100px;
+    margin: 10%;
 }
 
-img {
-    width: 30%;
-    height: auto;
-    margin: 0;
-    padding: 0;
+.ranking-icon img,
+.login-icon img {
+    height: 100%;
+    width: 100%;
 }
+

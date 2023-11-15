@@ -9,6 +9,7 @@ function GuessList() {
   const [guessList, setGuessList] = useState<AnimalInterface[]>([]);
   const [randomAnimal, setRandomAnimal] = useState<AnimalInterface | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [finished, setFinished] = useState(false);
 
   useEffect(() => {
     const fetchRandomAnimal = async () => {
@@ -40,13 +41,13 @@ function GuessList() {
     }
     setGuessList((prevGuessList) => [...prevGuessList, newAnimal]);
     if (newAnimal.name === randomAnimal.name) {
-      alert("Has acertado, ¡felicidades!");
+      setFinished(true);
     }
   };
 
   return (
     <>
-      <GuessForm onAnimalChange={addGuess} />
+      <GuessForm onAnimalChange={addGuess} finished={finished} />
       <div className="guess-list">
         {guessList
           .slice(0)

@@ -3,13 +3,18 @@ import Autocomplete from "./Autocomplete";
 import { AnimalInterface } from "../../../server/src/animals";
 import "../styles/GuessForm.css";
 
+interface GuessProps {
+  onAnimalChange: (newAnimal: AnimalInterface) => void,
+  finished: boolean
+}
+
 function GuessForm({
   onAnimalChange,
-}: {
-  onAnimalChange: (newAnimal: AnimalInterface) => void;
-}) {
+  finished
+}: GuessProps) {
   const [input, setInput] = useState("");
   const [recomendations, setRecomendations] = useState<string[]>([])
+  const [tries, setTries] = useState(0);
 
 
   const searchRecomendations = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -45,8 +50,8 @@ function GuessForm({
       }
       const data = await response.json();
       onAnimalChange(data);
-      console.log(data);
       setInput("");
+      setTries(tries + 1);
     } catch (error) {
       console.error("There was a problem with the fetch operation:", error);
     }
@@ -58,18 +63,19 @@ function GuessForm({
 
   return (
     <div>
-      <form className="animal-form" onSubmit={searchAnimal}>
-        <input
-          className="guess-input"
-          type="text"
-          id="guess"
-          value={input}
-          onChange={handleChange}
-          autoComplete="off"
-        />
-        <button className="guess-button"> Adivinar </button>
-        {input.length > 2 && <Autocomplete recommendations={recomendations} setInput={setInput} hideAutocomplete={hideAutocomplete} />}
-      </form>
+      {finished ? (<h2> Felicidades, has adivinado el animal en {tries} intentos</h2>) :
+        (<form className="animal-form" onSubmit={searchAnimal}>
+          <input
+            className="guess-input"
+            type="text"
+            id="guess"
+            value={input}
+            onChange={handleChange}
+            autoComplete="off"
+          />
+          <button className="guess-button"> Adivinar </button>
+          {input.length > 2 && <Autocomplete recommendations={recomendations} setInput={setInput} hideAutocomplete={hideAutocomplete} />}
+        </form>)}
     </div>
   );
 }
