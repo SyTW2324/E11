@@ -52,6 +52,10 @@ function GuessForm({
     }
   };
 
+  const hideAutocomplete = () => {
+    setRecomendations([])
+  }
+
   return (
     <div>
       <form className="animal-form" onSubmit={searchAnimal}>
@@ -64,7 +68,7 @@ function GuessForm({
           autoComplete="off"
         />
         <button className="guess-button"> Adivinar </button>
-        {input && <Autocomplete recommendations={recomendations} setInput={setInput} />}
+        {input.length > 2 && <Autocomplete recommendations={recomendations} setInput={setInput} hideAutocomplete={hideAutocomplete} />}
       </form>
     </div>
   );
