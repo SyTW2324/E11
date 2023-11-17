@@ -1,539 +1,705 @@
-[{
-  "_id": {
-    "$oid": "6548f0064b84cac6b328c93a"
+[
+  {
+    "_id": {
+      "$oid": "6548f0064b84cac6b328c93a"
+    },
+    "name": "Elefante",
+    "searchName": "elefante",
+    "image": "https://static.nationalgeographic.es/files/styles/image_3200/public/01-orphan-elephants-nationalgeographic_2188826.jpg?w=1600&h=1067",
+    "class": "Mamífero",
+    "weight": 6000,
+    "height": 3.3,
+    "diet": "Herbívoro",
+    "habitat": [
+      "Sabana"
+    ],
+    "medium": [
+      "Terrestre"
+    ]
   },
-  "name": "Elefante",
-  "image": "https://static.nationalgeographic.es/files/styles/image_3200/public/01-orphan-elephants-nationalgeographic_2188826.jpg?w=1600&h=1067",
-  "class": "Mamífero",
-  "weight": 6000,
-  "height": 3.3,
-  "diet": "Herbívoro",
-  "habitat": ["Sabana"],
-  "medium": ["Terrestre"]
-},
-{
-  "_id": {
-    "$oid": "6548f0064b84cac6b328c93b"
+  {
+    "_id": {
+      "$oid": "6548f0064b84cac6b328c93b"
+    },
+    "name": "León",
+    "searchName": "leon",
+    "image": "https://www.selwo.es/content/dam/swa/images/descubre-el-zoo/especies-y-territorios/animales/leon/Leon-Selwo-Aventura-3.jpg",
+    "class": "Mamífero",
+    "weight": 190,
+    "height": 1.2,
+    "diet": "Carnívoro",
+    "habitat": [
+      "Sabana"
+    ],
+    "medium": [
+      "Terrestre"
+    ]
   },
-  "name": "León",
-  "image": "https://www.selwo.es/content/dam/swa/images/descubre-el-zoo/especies-y-territorios/animales/leon/Leon-Selwo-Aventura-3.jpg",
-  "class": "Mamífero",
-  "weight": 190,
-  "height": 1.2,
-  "diet": "Carnívoro",
-  "habitat": ["Sabana"],
-  "medium": ["Terrestre"]
-},
-{
-  "_id": {
-    "$oid": "6548f0064b84cac6b328c93c"
+  {
+    "_id": {
+      "$oid": "6548f0064b84cac6b328c93c"
+    },
+    "name": "Tigre",
+    "searchName": "tigre",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Tigress_at_Jim_Corbett_National_Park.jpg/250px-Tigress_at_Jim_Corbett_National_Park.jpg",
+    "class": "Mamífero",
+    "weight": 300,
+    "height": 1.2,
+    "diet": "Carnívoro",
+    "habitat": [
+      "Bosque"
+    ],
+    "medium": [
+      "Terrestre"
+    ]
   },
-  "name": "Tigre",
-  "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Tigress_at_Jim_Corbett_National_Park.jpg/250px-Tigress_at_Jim_Corbett_National_Park.jpg",
-  "class": "Mamífero",
-  "weight": 300,
-  "height": 1.2,
-  "diet": "Carnívoro",
-  "habitat": ["Bosque"],
-  "medium": ["Terrestre"]
-},
-{
-  "_id": {
-    "$oid": "6548f0064b84cac6b328c93d"
+  {
+    "_id": {
+      "$oid": "6548f0064b84cac6b328c93d"
+    },
+    "name": "Jirafa",
+    "searchName": "jirafa",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/e/e0/Giraffa_camelopardalis_angolensis.jpg",
+    "class": "Mamífero",
+    "weight": 1200,
+    "height": 5.5,
+    "diet": "Herbívoro",
+    "habitat": [
+      "Sabana"
+    ],
+    "medium": [
+      "Terrestre"
+    ]
   },
-  "name": "Jirafa",
-  "image": "https://upload.wikimedia.org/wikipedia/commons/e/e0/Giraffa_camelopardalis_angolensis.jpg",
-  "class": "Mamífero",
-  "weight": 1200,
-  "height": 5.5,
-  "diet": "Herbívoro",
-  "habitat": ["Sabana"],
-  "medium": ["Terrestre"]
-},
-{
-  "_id": {
-    "$oid": "6548f0064b84cac6b328c93e"
+  {
+    "_id": {
+      "$oid": "6548f0064b84cac6b328c93e"
+    },
+    "name": "Tiburón blanco",
+    "searchName": "tiburon blanco",
+    "image": "data:image/jpeg;base64,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",
+    "class": "Pez",
+    "weight": 1100,
+    "height": 6.4,
+    "diet": "Carnívoro",
+    "habitat": [
+      "Océano"
+    ],
+    "medium": [
+      "Acuático"
+    ]
   },
-  "name": "Tiburón blanco",
-  "image": "data:image/jpeg;base64,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",
-  "class": "Pez",
-  "weight": 1100,
-  "height": 6.4,
-  "diet": "Carnívoro",
-  "habitat": ["Océano"],
-  "medium": ["Acuático"]
-},
-{
-  "_id": {
-    "$oid": "6548f0064b84cac6b328c93f"
+  {
+    "_id": {
+      "$oid": "6548f0064b84cac6b328c93f"
+    },
+    "name": "Cocodrilo",
+    "searchName": "cocodrilo",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/NileCrocodile.jpg/1200px-NileCrocodile.jpg",
+    "class": "Reptil",
+    "weight": 1000,
+    "height": 5.2,
+    "diet": "Carnívoro",
+    "habitat": [
+      "Río"
+    ],
+    "medium": [
+      "Terrestre",
+      "Acuático"
+    ]
   },
-  "name": "Cocodrilo",
-  "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/NileCrocodile.jpg/1200px-NileCrocodile.jpg",
-  "class": "Reptil",
-  "weight": 1000,
-  "height": 5.2,
-  "diet": "Carnívoro",
-  "habitat": ["Río"],
-  "medium": [
-    "Terrestre",
-    "Acuático"
-  ]
-},
-{
-  "_id": {
-    "$oid": "6548f0064b84cac6b328c940"
+  {
+    "_id": {
+      "$oid": "6548f0064b84cac6b328c940"
+    },
+    "name": "Ballena azul",
+    "searchName": "ballena azul",
+    "image": "https://c.files.bbci.co.uk/653B/production/_95151952_mediaitem95151800.jpg",
+    "class": "Mamífero",
+    "weight": 170000,
+    "height": 30,
+    "diet": "Carnívoro",
+    "habitat": [
+      "Océano"
+    ],
+    "medium": [
+      "Acuático"
+    ]
   },
-  "name": "Ballena azul",
-  "image": "https://c.files.bbci.co.uk/653B/production/_95151952_mediaitem95151800.jpg",
-  "class": "Mamífero",
-  "weight": 170000,
-  "height": 30,
-  "diet": "Carnívoro",
-  "habitat": ["Océano"],
-  "medium": ["Acuático"]
-},
-{
-  "_id": {
-    "$oid": "6548f0064b84cac6b328c941"
+  {
+    "_id": {
+      "$oid": "6548f0064b84cac6b328c941"
+    },
+    "name": "Atún rojo",
+    "searchName": "atún rojo",
+    "image": "https://static.nationalgeographic.es/files/styles/image_3200/public/10105.600x450.jpg?w=710&h=533",
+    "class": "Pez",
+    "weight": 600,
+    "height": 3,
+    "diet": "Carnívoro",
+    "habitat": [
+      "Océano"
+    ],
+    "medium": [
+      "Acuático"
+    ]
   },
-  "name": "Atún rojo",
-  "image": "https://static.nationalgeographic.es/files/styles/image_3200/public/10105.600x450.jpg?w=710&h=533",
-  "class": "Pez",
-  "weight": 600,
-  "height": 3,
-  "diet": "Carnívoro",
-  "habitat": ["Océano"],
-  "medium": ["Acuático"]
-},
-{
-  "_id": {
-    "$oid": "6548f0064b84cac6b328c942"
+  {
+    "_id": {
+      "$oid": "6548f0064b84cac6b328c942"
+    },
+    "name": "Trucha",
+    "searchName": "trucha",
+    "image": "https://img.europapress.es/fotoweb/fotonoticia_20140422175057_420.jpg",
+    "class": "Pez",
+    "weight": 20,
+    "height": 1.5,
+    "diet": "Carnívoro",
+    "habitat": [
+      "Río"
+    ],
+    "medium": [
+      "Acuático"
+    ]
   },
-  "name": "Trucha",
-  "image": "https://img.europapress.es/fotoweb/fotonoticia_20140422175057_420.jpg",
-  "class": "Pez",
-  "weight": 20,
-  "height": 1.5,
-  "diet": "Carnívoro",
-  "habitat": ["Río"],
-  "medium": ["Acuático"]
-},
-{
-  "_id": {
-    "$oid": "6548f0064b84cac6b328c943"
+  {
+    "_id": {
+      "$oid": "6548f0064b84cac6b328c943"
+    },
+    "name": "Oso pardo",
+    "searchName": "oso pardo",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/f/f4/Brown_bear_%28Ursus_arctos%29%2C_Viiksimo%2C_Kainuu_region%2C_Finland%2C_16_June_2018_%2843094873292%29.jpg",
+    "class": "Mamífero",
+    "weight": 500,
+    "height": 2.5,
+    "diet": "Omnívoro",
+    "habitat": [
+      "Bosque"
+    ],
+    "medium": [
+      "Terrestre"
+    ]
   },
-  "name": "Oso pardo",
-  "image": "https://upload.wikimedia.org/wikipedia/commons/f/f4/Brown_bear_%28Ursus_arctos%29%2C_Viiksimo%2C_Kainuu_region%2C_Finland%2C_16_June_2018_%2843094873292%29.jpg",
-  "class": "Mamífero",
-  "weight": 500,
-  "height": 2.5,
-  "diet": "Omnívoro",
-  "habitat": ["Bosque"],
-  "medium": ["Terrestre"]
-},
-{
-  "_id": {
-    "$oid": "6548f0064b84cac6b328c944"
+  {
+    "_id": {
+      "$oid": "6548f0064b84cac6b328c944"
+    },
+    "name": "Lobo",
+    "searchName": "lobo",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Canis_lupus_265b.jpg/800px-Canis_lupus_265b.jpg",
+    "class": "Mamífero",
+    "weight": 80,
+    "height": 1.5,
+    "diet": "Carnívoro",
+    "habitat": [
+      "Bosque"
+    ],
+    "medium": [
+      "Terrestre"
+    ]
   },
-  "name": "Lobo",
-  "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Canis_lupus_265b.jpg/800px-Canis_lupus_265b.jpg",
-  "class": "Mamífero",
-  "weight": 80,
-  "height": 1.5,
-  "diet": "Carnívoro",
-  "habitat": ["Bosque"],
-  "medium": ["Terrestre"]
-},
-{
-  "_id": {
-    "$oid": "6548f0064b84cac6b328c945"
+  {
+    "_id": {
+      "$oid": "6548f0064b84cac6b328c945"
+    },
+    "name": "Águila",
+    "searchName": "aguila",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Steinadler_Aquila_chrysaetos_closeup1_Richard_Bartz.jpg/640px-Steinadler_Aquila_chrysaetos_closeup1_Richard_Bartz.jpg",
+    "class": "Ave",
+    "weight": 7,
+    "height": 1,
+    "diet": "Carnívoro",
+    "habitat": [
+      "Montaña"
+    ],
+    "medium": [
+      "Aéreo"
+    ]
   },
-  "name": "Águila",
-  "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Steinadler_Aquila_chrysaetos_closeup1_Richard_Bartz.jpg/640px-Steinadler_Aquila_chrysaetos_closeup1_Richard_Bartz.jpg",
-  "class": "Ave",
-  "weight": 7,
-  "height": 1,
-  "diet": "Carnívoro",
-  "habitat": ["Montaña"],
-  "medium": ["Aéreo"]
-},
-{
-  "_id": {
-    "$oid": "6548f0064b84cac6b328c946"
+  {
+    "_id": {
+      "$oid": "6548f0064b84cac6b328c946"
+    },
+    "name": "Paloma",
+    "searchName": "paloma",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/PigeonMonceau_%28cropped%29.jpg/250px-PigeonMonceau_%28cropped%29.jpg",
+    "class": "Ave",
+    "weight": 0.5,
+    "height": 0.3,
+    "diet": "Herbívoro",
+    "habitat": [
+      "Ciudad"
+    ],
+    "medium": [
+      "Aéreo"
+    ]
   },
-  "name": "Paloma",
-  "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/PigeonMonceau_%28cropped%29.jpg/250px-PigeonMonceau_%28cropped%29.jpg",
-  "class": "Ave",
-  "weight": 0.5,
-  "height": 0.3,
-  "diet": "Herbívoro",
-  "habitat": ["Ciudad"],
-  "medium": ["Aéreo"]
-},
-{
-  "_id": {
-    "$oid": "6548f0064b84cac6b328c947"
+  {
+    "_id": {
+      "$oid": "6548f0064b84cac6b328c947"
+    },
+    "name": "Rana",
+    "searchName": "rana",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/b/be/European_Common_Frog_Rana_temporaria_%28cropped%29.jpg",
+    "class": "Anfibio",
+    "weight": 0.5,
+    "height": 0.3,
+    "diet": "Carnívoro",
+    "habitat": [
+      "Bosque",
+      "Selva",
+      "Río"
+    ],
+    "medium": [
+      "Terrestre",
+      "Acuático"
+    ]
   },
-  "name": "Rana",
-  "image": "https://upload.wikimedia.org/wikipedia/commons/b/be/European_Common_Frog_Rana_temporaria_%28cropped%29.jpg",
-  "class": "Anfibio",
-  "weight": 0.5,
-  "height": 0.3,
-  "diet": "Carnívoro",
-  "habitat": [
-    "Bosque",
-    "Selva",
-    "Río"
-  ],
-  "medium": [
-    "Terrestre",
-    "Acuático"
-  ]
-},
-{
-  "_id": {
-    "$oid": "6548f0064b84cac6b328c948"
+  {
+    "_id": {
+      "$oid": "6548f0064b84cac6b328c948"
+    },
+    "name": "Camello",
+    "searchName": "camello",
+    "image": "https://nubika.es/wp-content/uploads/2021/05/caracteristicas-del-camello.jpg",
+    "class": "Mamífero",
+    "weight": 700,
+    "height": 2.5,
+    "diet": "Herbívoro",
+    "habitat": [
+      "Desierto"
+    ],
+    "medium": [
+      "Terrestre"
+    ]
   },
-  "name": "Camello",
-  "image": "https://nubika.es/wp-content/uploads/2021/05/caracteristicas-del-camello.jpg",
-  "class": "Mamífero",
-  "weight": 700,
-  "height": 2.5,
-  "diet": "Herbívoro",
-  "habitat": ["Desierto"],
-  "medium": ["Terrestre"]
-},
-{
-  "_id": {
-    "$oid": "6548f0064b84cac6b328c949"
+  {
+    "_id": {
+      "$oid": "6548f0064b84cac6b328c949"
+    },
+    "name": "Serpiente",
+    "searchName": "serpiente",
+    "image": "https://fotografias.antena3.com/clipping/cmsimages01/2023/06/20/3F0161B9-BC91-4B10-9D81-A2210B59FE31/dia-mundial-serpiente_104.jpg?crop=855,855,x371,y0&width=1200&height=1200&optimize=low&format=webply",
+    "class": "Reptil",
+    "weight": 10,
+    "height": 2.5,
+    "diet": "Carnívoro",
+    "habitat": [
+      "Bosque",
+      "Desierto",
+      "Selva"
+    ],
+    "medium": [
+      "Terrestre"
+    ]
   },
-  "name": "Serpiente",
-  "image": "https://fotografias.antena3.com/clipping/cmsimages01/2023/06/20/3F0161B9-BC91-4B10-9D81-A2210B59FE31/dia-mundial-serpiente_104.jpg?crop=855,855,x371,y0&width=1200&height=1200&optimize=low&format=webply",
-  "class": "Reptil",
-  "weight": 10,
-  "height": 2.5,
-  "diet": "Carnívoro",
-  "habitat": [
-    "Bosque",
-    "Desierto",
-    "Selva"
-  ],
-  "medium": ["Terrestre"]
-},
-{
-  "_id": {
-    "$oid": "6548f0064b84cac6b328c94a"
+  {
+    "_id": {
+      "$oid": "6548f0064b84cac6b328c94a"
+    },
+    "name": "Oso polar",
+    "searchName": "oso polar",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/0/09/Polar_Bear_-_Alaska.jpg",
+    "class": "Mamífero",
+    "weight": 500,
+    "height": 2.5,
+    "diet": "Carnívoro",
+    "habitat": [
+      "Hielo"
+    ],
+    "medium": [
+      "Terrestre"
+    ]
   },
-  "name": "Oso polar",
-  "image": "https://upload.wikimedia.org/wikipedia/commons/0/09/Polar_Bear_-_Alaska.jpg",
-  "class": "Mamífero",
-  "weight": 500,
-  "height": 2.5,
-  "diet": "Carnívoro",
-  "habitat": ["Hielo"],
-  "medium": ["Terrestre"]
-},
-{
-  "_id": {
-    "$oid": "6548f0064b84cac6b328c94b"
+  {
+    "_id": {
+      "$oid": "6548f0064b84cac6b328c94b"
+    },
+    "name": "Pingüino",
+    "searchName": "pinguino",
+    "image": "https://cdn.nubika.es/wp-content/uploads/2023/05/03153705/caracteristicas-pinguino-descubrelas.jpg",
+    "class": "Ave",
+    "weight": 20,
+    "height": 1.5,
+    "diet": "Carnívoro",
+    "habitat": [
+      "Hielo"
+    ],
+    "medium": [
+      "Terrestre",
+      "Acuático"
+    ]
   },
-  "name": "Pingüino",
-  "image": "https://cdn.nubika.es/wp-content/uploads/2023/05/03153705/caracteristicas-pinguino-descubrelas.jpg",
-  "class": "Ave",
-  "weight": 20,
-  "height": 1.5,
-  "diet": "Carnívoro",
-  "habitat": ["Hielo"],
-  "medium": [
-    "Terrestre",
-    "Acuático"
-  ]
-},
-{
-  "_id": {
-    "$oid": "6548f0064b84cac6b328c94c"
+  {
+    "_id": {
+      "$oid": "6548f0064b84cac6b328c94c"
+    },
+    "name": "Avestruz",
+    "searchName": "avestruz",
+    "image": "https://static.inaturalist.org/photos/2568822/large.jpg",
+    "class": "Ave",
+    "weight": 150,
+    "height": 2.5,
+    "diet": "Herbívoro",
+    "habitat": [
+      "Sabana"
+    ],
+    "medium": [
+      "Terrestre"
+    ]
   },
-  "name": "Avestruz",
-  "image": "https://static.inaturalist.org/photos/2568822/large.jpg",
-  "class": "Ave",
-  "weight": 150,
-  "height": 2.5,
-  "diet": "Herbívoro",
-  "habitat": ["Sabana"],
-  "medium": ["Terrestre"]
-},
-{
-  "_id": {
-    "$oid": "6548f0064b84cac6b328c94d"
+  {
+    "_id": {
+      "$oid": "6548f0064b84cac6b328c94d"
+    },
+    "name": "Morsa",
+    "searchName": "morsa",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Walrus.jpg/800px-Walrus.jpg",
+    "class": "Mamífero",
+    "weight": 1500,
+    "height": 3,
+    "diet": "Carnívoro",
+    "habitat": [
+      "Hielo"
+    ],
+    "medium": [
+      "Acuático"
+    ]
   },
-  "name": "Morsa",
-  "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Walrus.jpg/800px-Walrus.jpg",
-  "class": "Mamífero",
-  "weight": 1500,
-  "height": 3,
-  "diet": "Carnívoro",
-  "habitat": ["Hielo"],
-  "medium": ["Acuático"]
-},
-{
-  "_id": {
-    "$oid": "6548f0064b84cac6b328c94e"
+  {
+    "_id": {
+      "$oid": "6548f0064b84cac6b328c94e"
+    },
+    "name": "Orangután",
+    "searchName": "orangutan",
+    "image": "https://wwfes.awsassets.panda.org/img/orangutan_crias_87022.jpg",
+    "class": "Mamífero",
+    "weight": 100,
+    "height": 1.5,
+    "diet": "Omnívoro",
+    "habitat": [
+      "Selva"
+    ],
+    "medium": [
+      "Terrestre"
+    ]
   },
-  "name": "Orangután",
-  "image": "https://wwfes.awsassets.panda.org/img/orangutan_crias_87022.jpg",
-  "class": "Mamífero",
-  "weight": 100,
-  "height": 1.5,
-  "diet": "Omnívoro",
-  "habitat": ["Selva"],
-  "medium": ["Terrestre"]
-},
-{
-  "_id": {
-    "$oid": "6548f0064b84cac6b328c94f"
+  {
+    "_id": {
+      "$oid": "6548f0064b84cac6b328c94f"
+    },
+    "name": "Tucán",
+    "searchName": "tucan",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/f/f6/Keel-billed_Toucan_%2816201157519%29.jpg",
+    "class": "Ave",
+    "weight": 1,
+    "height": 0.5,
+    "diet": "Omnívoro",
+    "habitat": [
+      "Selva"
+    ],
+    "medium": [
+      "Aéreo"
+    ]
   },
-  "name": "Tucán",
-  "image": "https://upload.wikimedia.org/wikipedia/commons/f/f6/Keel-billed_Toucan_%2816201157519%29.jpg",
-  "class": "Ave",
-  "weight": 1,
-  "height": 0.5,
-  "diet": "Omnívoro",
-  "habitat": ["Selva"],
-  "medium": ["Aéreo"]
-},
-{
-  "_id": {
-    "$oid": "6548f0064b84cac6b328c950"
+  {
+    "_id": {
+      "$oid": "6548f0064b84cac6b328c950"
+    },
+    "name": "Ajolote",
+    "searchName": "ajolote",
+    "image": "https://static.nationalgeographic.es/files/styles/image_3200/public/NationalGeographic_2697714.jpg?w=1600",
+    "class": "Anfibio",
+    "weight": 0.5,
+    "height": 0.3,
+    "diet": "Carnívoro",
+    "habitat": [
+      "Río"
+    ],
+    "medium": [
+      "Acuático"
+    ]
   },
-  "name": "Ajolote",
-  "image": "https://static.nationalgeographic.es/files/styles/image_3200/public/NationalGeographic_2697714.jpg?w=1600",
-  "class": "Anfibio",
-  "weight": 0.5,
-  "height": 0.3,
-  "diet": "Carnívoro",
-  "habitat": ["Río"],
-  "medium": ["Acuático"]
-},
-{
-  "_id": {
-    "$oid": "6548f0064b84cac6b328c951"
+  {
+    "_id": {
+      "$oid": "6548f0064b84cac6b328c951"
+    },
+    "name": "Anguila",
+    "searchName": "anguila",
+    "image": "https://cadenaser.com/reheightr/qxloUGtIaTN0D9vlhcgssaGW8cs=/1200x900/filters:format(jpg):quality(70)/cloudfront-eu-central-1.images.arcpublishing.com/prisaradio/BNVBDHYHPVMLRCYC3ZGCMQ2HDE.jpg",
+    "class": "Pez",
+    "weight": 10,
+    "height": 2,
+    "diet": "Carnívoro",
+    "habitat": [
+      "Río"
+    ],
+    "medium": [
+      "Acuático"
+    ]
   },
-  "name": "Anguila",
-  "image": "https://cadenaser.com/reheightr/qxloUGtIaTN0D9vlhcgssaGW8cs=/1200x900/filters:format(jpg):quality(70)/cloudfront-eu-central-1.images.arcpublishing.com/prisaradio/BNVBDHYHPVMLRCYC3ZGCMQ2HDE.jpg",
-  "class": "Pez",
-  "weight": 10,
-  "height": 2,
-  "diet": "Carnívoro",
-  "habitat": ["Río"],
-  "medium": ["Acuático"]
-},
-{
-  "_id": {
-    "$oid": "6548f0064b84cac6b328c952"
+  {
+    "_id": {
+      "$oid": "6548f0064b84cac6b328c952"
+    },
+    "name": "Gallina",
+    "searchName": "gallina",
+    "image": "https://granjabrenas.com/wp-content/uploads/2022/05/chicken-gcbae383c4_1280-e1652694815826.jpg",
+    "class": "Ave",
+    "weight": 2,
+    "height": 0.5,
+    "diet": "Omnívoro",
+    "habitat": [
+      "Granja"
+    ],
+    "medium": [
+      "Terrestre"
+    ]
   },
-  "name": "Gallina",
-  "image": "https://granjabrenas.com/wp-content/uploads/2022/05/chicken-gcbae383c4_1280-e1652694815826.jpg",
-  "class": "Ave",
-  "weight": 2,
-  "height": 0.5,
-  "diet": "Omnívoro",
-  "habitat": ["Granja"],
-  "medium": ["Terrestre"]
-},
-{
-  "_id": {
-    "$oid": "6548f0064b84cac6b328c953"
+  {
+    "_id": {
+      "$oid": "6548f0064b84cac6b328c953"
+    },
+    "name": "Pato",
+    "searchName": "pato",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/f/ff/Anas_platyrhynchos_qtl1.jpg",
+    "class": "Ave",
+    "weight": 2,
+    "height": 0.5,
+    "diet": "Omnívoro",
+    "habitat": [
+      "Río"
+    ],
+    "medium": [
+      "Terrestre",
+      "Acuático",
+      "Aéreo"
+    ]
   },
-  "name": "Pato",
-  "image": "https://upload.wikimedia.org/wikipedia/commons/f/ff/Anas_platyrhynchos_qtl1.jpg",
-  "class": "Ave",
-  "weight": 2,
-  "height": 0.5,
-  "diet": "Omnívoro",
-  "habitat": ["Río"],
-  "medium": [
-    "Terrestre",
-    "Acuático",
-    "Aéreo"
-  ]
-},
-{
-  "_id": {
-    "$oid": "6548f0064b84cac6b328c954"
+  {
+    "_id": {
+      "$oid": "6548f0064b84cac6b328c954"
+    },
+    "name": "Hipopótamo",
+    "searchName": "hipopotamo",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/f/ff/Hipop%C3%B3tamo_%28Hippopotamus_amphibius%29%2C_parque_nacional_de_Chobe%2C_Botsuana%2C_2018-07-28%2C_DD_80.jpg",
+    "class": "Mamífero",
+    "weight": 2000,
+    "height": 3,
+    "diet": "Herbívoro",
+    "habitat": [
+      "Río",
+      "Sabana"
+    ],
+    "medium": [
+      "Terrestre",
+      "Acuático"
+    ]
   },
-  "name": "Hipopótamo",
-  "image": "https://upload.wikimedia.org/wikipedia/commons/f/ff/Hipop%C3%B3tamo_%28Hippopotamus_amphibius%29%2C_parque_nacional_de_Chobe%2C_Botsuana%2C_2018-07-28%2C_DD_80.jpg",
-  "class": "Mamífero",
-  "weight": 2000,
-  "height": 3,
-  "diet": "Herbívoro",
-  "habitat": [
-    "Río",
-    "Sabana"
-  ],
-  "medium": [
-    "Terrestre",
-    "Acuático"
-  ]
-},
-{
-  "_id": {
-    "$oid": "6548f0064b84cac6b328c955"
+  {
+    "_id": {
+      "$oid": "6548f0064b84cac6b328c955"
+    },
+    "name": "Cerdo",
+    "searchName": "cerdo",
+    "image": "https://www.animanaturalis.org/img/pages/full/202005/P27-11697.jpg",
+    "class": "Mamífero",
+    "weight": 200,
+    "height": 1.5,
+    "diet": "Omnívoro",
+    "habitat": [
+      "Granja"
+    ],
+    "medium": [
+      "Terrestre"
+    ]
   },
-  "name": "Cerdo",
-  "image": "https://www.animanaturalis.org/img/pages/full/202005/P27-11697.jpg",
-  "class": "Mamífero",
-  "weight": 200,
-  "height": 1.5,
-  "diet": "Omnívoro",
-  "habitat": ["Granja"],
-  "medium": ["Terrestre"]
-},
-{
-  "_id": {
-    "$oid": "6548f0064b84cac6b328c956"
+  {
+    "_id": {
+      "$oid": "6548f0064b84cac6b328c956"
+    },
+    "name": "Conejo",
+    "searchName": "conejo",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/3/37/Oryctolagus_cuniculus_Tasmania_2.jpg",
+    "class": "Mamífero",
+    "weight": 5,
+    "height": 0.5,
+    "diet": "Herbívoro",
+    "habitat": [
+      "Bosque"
+    ],
+    "medium": [
+      "Terrestre"
+    ]
   },
-  "name": "Conejo",
-  "image": "https://upload.wikimedia.org/wikipedia/commons/3/37/Oryctolagus_cuniculus_Tasmania_2.jpg",
-  "class": "Mamífero",
-  "weight": 5,
-  "height": 0.5,
-  "diet": "Herbívoro",
-  "habitat": ["Bosque"],
-  "medium": ["Terrestre"]
-},
-{
-  "_id": {
-    "$oid": "6548f0064b84cac6b328c957"
+  {
+    "_id": {
+      "$oid": "6548f0064b84cac6b328c957"
+    },
+    "name": "Vaca",
+    "searchName": "vaca",
+    "image": "https://www.gastroactitud.com/wp-content/uploads/2021/07/frisona-1280x720.jpg",
+    "class": "Mamífero",
+    "weight": 500,
+    "height": 2,
+    "diet": "Herbívoro",
+    "habitat": [
+      "Granja"
+    ],
+    "medium": [
+      "Terrestre"
+    ]
   },
-  "name": "Vaca",
-  "image": "https://www.gastroactitud.com/wp-content/uploads/2021/07/frisona-1280x720.jpg",
-  "class": "Mamífero",
-  "weight": 500,
-  "height": 2,
-  "diet": "Herbívoro",
-  "habitat": ["Granja"],
-  "medium": ["Terrestre"]
-},
-{
-  "_id": {
-    "$oid": "6548f0064b84cac6b328c958"
+  {
+    "_id": {
+      "$oid": "6548f0064b84cac6b328c958"
+    },
+    "name": "Salmón",
+    "searchName": "salmon",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkEREs-tk0zh4GZrJxSH-2tgguykpA_zRJiA&usqp=CAU",
+    "class": "Pez",
+    "weight": 10,
+    "height": 2,
+    "diet": "Carnívoro",
+    "habitat": [
+      "Río"
+    ],
+    "medium": [
+      "Acuático"
+    ]
   },
-  "name": "Salmón",
-  "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkEREs-tk0zh4GZrJxSH-2tgguykpA_zRJiA&usqp=CAU",
-  "class": "Pez",
-  "weight": 10,
-  "height": 2,
-  "diet": "Carnívoro",
-  "habitat": ["Río"],
-  "medium": ["Acuático"]
-},
-{
-  "_id": {
-    "$oid": "6548f0064b84cac6b328c959"
+  {
+    "_id": {
+      "$oid": "6548f0064b84cac6b328c959"
+    },
+    "name": "Pelícano",
+    "searchName": "pelicano",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Pelikan_Walvis_Bay.jpg/320px-Pelikan_Walvis_Bay.jpg",
+    "class": "Ave",
+    "weight": 10,
+    "height": 1,
+    "diet": "Carnívoro",
+    "habitat": [
+      "Río"
+    ],
+    "medium": [
+      "Terrestre",
+      "Acuático",
+      "Aéreo"
+    ]
   },
-  "name": "Pelícano",
-  "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Pelikan_Walvis_Bay.jpg/320px-Pelikan_Walvis_Bay.jpg",
-  "class": "Ave",
-  "weight": 10,
-  "height": 1,
-  "diet": "Carnívoro",
-  "habitat": ["Río"],
-  "medium": [
-    "Terrestre",
-    "Acuático",
-    "Aéreo"
-  ]
-},
-{
-  "_id": {
-    "$oid": "6548f0064b84cac6b328c95a"
+  {
+    "_id": {
+      "$oid": "6548f0064b84cac6b328c95a"
+    },
+    "name": "Búho",
+    "searchName": "buho",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Uhu-muc.jpg",
+    "class": "Ave",
+    "weight": 5,
+    "height": 0.5,
+    "diet": "Carnívoro",
+    "habitat": [
+      "Bosque"
+    ],
+    "medium": [
+      "Aéreo"
+    ]
   },
-  "name": "Búho",
-  "image": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Uhu-muc.jpg",
-  "class": "Ave",
-  "weight": 5,
-  "height": 0.5,
-  "diet": "Carnívoro",
-  "habitat": ["Bosque"],
-  "medium": ["Aéreo"]
-},
-{
-  "_id": {
-    "$oid": "6548f0064b84cac6b328c95b"
+  {
+    "_id": {
+      "$oid": "6548f0064b84cac6b328c95b"
+    },
+    "name": "Cabra",
+    "searchName": "cabra",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/b/b2/Hausziege_04.jpg",
+    "class": "Mamífero",
+    "weight": 50,
+    "height": 1,
+    "diet": "Herbívoro",
+    "habitat": [
+      "Granja",
+      "Montaña"
+    ],
+    "medium": [
+      "Terrestre"
+    ]
   },
-  "name": "Cabra",
-  "image": "https://upload.wikimedia.org/wikipedia/commons/b/b2/Hausziege_04.jpg",
-  "class": "Mamífero",
-  "weight": 50,
-  "height": 1,
-  "diet": "Herbívoro",
-  "habitat": [
-    "Granja",
-    "Montaña"
-  ],
-  "medium": ["Terrestre"]
-},
-{
-  "_id": {
-    "$oid": "6548f0064b84cac6b328c95c"
+  {
+    "_id": {
+      "$oid": "6548f0064b84cac6b328c95c"
+    },
+    "name": "Camaleón",
+    "searchName": "camaleon",
+    "image": "https://www.nationalgeographic.com.es/medio/2023/06/21/camaleon_00000000_3f5dd7c4_230621123511_800x800.jpg",
+    "class": "Reptil",
+    "weight": 0.5,
+    "height": 0.3,
+    "diet": "Carnívoro",
+    "habitat": [
+      "Bosque",
+      "Desierto",
+      "Selva"
+    ],
+    "medium": [
+      "Terrestre"
+    ]
   },
-  "name": "Camaleón",
-  "image": "https://www.nationalgeographic.com.es/medio/2023/06/21/camaleon_00000000_3f5dd7c4_230621123511_800x800.jpg",
-  "class": "Reptil",
-  "weight": 0.5,
-  "height": 0.3,
-  "diet": "Carnívoro",
-  "habitat": [
-    "Bosque",
-    "Desierto",
-    "Selva"
-  ],
-  "medium": ["Terrestre"]
-},
-{
-  "_id": {
-    "$oid": "6548f0064b84cac6b328c95d"
+  {
+    "_id": {
+      "$oid": "6548f0064b84cac6b328c95d"
+    },
+    "name": "Tortuga",
+    "searchName": "tortuga",
+    "image": "https://www.tiendanimal.es/articulos/wp-content/uploads/2012/03/tortuga-tierra-casa-1-1200x675.jpg",
+    "class": "Reptil",
+    "weight": 100,
+    "height": 1,
+    "diet": "Herbívoro",
+    "habitat": [
+      "Bosque",
+      "Desierto",
+      "Selva"
+    ],
+    "medium": [
+      "Terrestre"
+    ]
   },
-  "name": "Tortuga",
-  "image": "https://www.tiendanimal.es/articulos/wp-content/uploads/2012/03/tortuga-tierra-casa-1-1200x675.jpg",
-  "class": "Reptil",
-  "weight": 100,
-  "height": 1,
-  "diet": "Herbívoro",
-  "habitat": [
-    "Bosque",
-    "Desierto",
-    "Selva"
-  ],
-  "medium": ["Terrestre"]
-},
-{
-  "_id": {
-    "$oid": "6548f0064b84cac6b328c95e"
+  {
+    "_id": {
+      "$oid": "6548f0064b84cac6b328c95e"
+    },
+    "name": "Iguana",
+    "searchName": "iguana",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/2/23/Polish_20230102_131307806_%281%29.jpg",
+    "class": "Reptil",
+    "weight": 10,
+    "height": 1,
+    "diet": "Herbívoro",
+    "habitat": [
+      "Bosque",
+      "Selva"
+    ],
+    "medium": [
+      "Terrestre"
+    ]
   },
-  "name": "Iguana",
-  "image": "https://upload.wikimedia.org/wikipedia/commons/2/23/Polish_20230102_131307806_%281%29.jpg",
-  "class": "Reptil",
-  "weight": 10,
-  "height": 1,
-  "diet": "Herbívoro",
-  "habitat": [
-    "Bosque",
-    "Selva"
-  ],
-  "medium": ["Terrestre"]
-},
-{
-  "_id": {
-    "$oid": "6548f0064b84cac6b328c95f"
-  },
-  "name": "Tortuga marina",
-  "image": "https://img2.rtve.es/i/?w=1600&i=1686905178441.jpg",
-  "class": "Reptil",
-  "weight": 100,
-  "height": 1,
-  "diet": "Herbívoro",
-  "habitat": ["Océano"],
-  "medium": ["Acuático"]
-}]
+  {
+    "_id": {
+      "$oid": "6548f0064b84cac6b328c95f"
+    },
+    "name": "Tortuga marina",
+    "searchName": "tortuga marina",
+    "image": "https://img2.rtve.es/i/?w=1600&i=1686905178441.jpg",
+    "class": "Reptil",
+    "weight": 100,
+    "height": 1,
+    "diet": "Herbívoro",
+    "habitat": [
+      "Océano"
+    ],
+    "medium": [
+      "Acuático"
+    ]
+  }
+]

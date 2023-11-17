@@ -54,7 +54,7 @@ animalsRouter.get("/name/:name", async (request, response) => {
 animalsRouter.get("/name_like/:name", async (request, response) => {
   try {
     const animal = await Animal.find({
-      name: { $regex: request.params.name, $options: "i" },
+      searchName: { $regex: request.params.name, $options: "i" },
     });
     if (!animal) {
       response.status(404).send(`Animal ${request.params.name} not found`);

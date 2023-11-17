@@ -19,12 +19,13 @@ function GuessForm({
 
   const searchRecomendations = async (event: React.FormEvent<HTMLFormElement>) => {
     try {
+      input.toLowerCase().replace("á", "a").replace("é", "e").replace("í", "i").replace("ó", "o").replace("ú", "u").replace("ü", "u");
       const response = await fetch(`http://localhost:5000/animals/name_like/${input}`)
       if (!response.ok) {
         throw new Error("Network response was not ok")
       }
       const data = await response.json()
-      setRecomendations(data.map((animal: AnimalInterface) => animal.name))
+      setRecomendations(data.map((animal: AnimalInterface) => animal.name).sort())
     } catch (error) {
       console.error("There was a problem with the fetch operation:", error)
     }
