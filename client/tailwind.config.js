@@ -6,6 +6,8 @@ module.exports = {
   theme: {
     colors: {
       "burlywood": "#deb887",
+      "verde-sabana": "#599056",
+      "verde-hoja": "#8b9e5c",
     },
     extend: {},
   },

@@ -8,7 +8,7 @@ function Header() {
   return (
     <div className="header-container">
       <div className="login-icon">
-        <Link to="/loginRegister">
+        <Link to="/login">
           <img src={login} alt="loginRegister-icon" />
         </Link>
       </div>
