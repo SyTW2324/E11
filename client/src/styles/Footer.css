@@ -1,12 +1,20 @@
-.footer-container{
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    bottom: 0;
-    width: auto;
-    height: 10%;
-    background-color: #000000;
-    padding: 10px; /* Ajusta según sea necesario */
-    text-align: center; /* Alinea el contenido al centro si es necesario */
-    /* Otros estilos si es necesario */
-  }
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  bottom: 0;
+  width: auto;
+  height: 10vh;
+  background-color: #000000;
+  padding: 10px;
+  text-align: center;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto;
+  width: 80%;
+  height: 100%;
+}

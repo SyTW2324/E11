@@ -5,7 +5,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 function Ranking() {
   return (
     <div>
-      <h1>Ranking</h1>
+      <Header />
+      <h2>Ranking</h2>
     </div>
   );
 }

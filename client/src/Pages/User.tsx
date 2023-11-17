@@ -8,6 +8,7 @@ function User() {
 
   return (
     <div>
+      <Header />
       <h1>User</h1>
       <p>{user?.name}</p>
       <p>{user?.email}</p>
