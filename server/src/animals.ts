@@ -2,6 +2,7 @@ import * as mongodb from "mongodb";
 import {Document, model, Schema} from "mongoose";
 
 export interface AnimalInterface extends Document {
+  _id?: mongodb.ObjectId;
   name: string;
   image: string;
   class: string;
@@ -10,7 +11,6 @@ export interface AnimalInterface extends Document {
   diet: string;
   habitat: string[];
   medium: string[];
-  _id?: mongodb.ObjectId;
 }
 
 const AnimalSchema = new Schema<AnimalInterface>({
