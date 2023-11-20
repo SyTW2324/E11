@@ -1,7 +1,7 @@
 import express from "express";
 import "./database";
-import {animalsRouter} from "./animals.routes";
-import {userRouter} from "./user.routes";
+import {animalsRouter} from "./routes/animals.routes";
+import {userRouter} from "./routes/user.routes";
 import cors from "cors";
 
 const app = express();

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Autocomplete from "./Autocomplete";
-import { AnimalInterface } from "../../../server/src/animals";
+import { AnimalInterface } from "../../../server/src/models/animals";
 import "../styles/GuessForm.css";
 
 interface GuessProps {

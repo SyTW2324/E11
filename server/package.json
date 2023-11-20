@@ -12,15 +12,20 @@
   "author": "Febe Fariña Aguirre y Daniel Glez. de Chávez Glez.",
   "license": "ISC",
   "dependencies": {
+    "@types/axios": "^0.14.0",
+    "axios": "^1.6.2",
+    "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.2.0",
-    "mongoose": "^8.0.0"
+    "mongoose": "^8.0.1"
   },
   "devDependencies": {
     "@types/cors": "^2.8.16",
     "@types/express": "^4.17.21",
+    "@types/jsonwebtoken": "^9.0.5",
     "ts-node": "^10.9.1",
     "typescript": "^5.2.2"
   }

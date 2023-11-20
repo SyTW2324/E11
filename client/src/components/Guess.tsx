@@ -2,7 +2,7 @@ import React from "react";
 import {useState} from "react";
 import Category from "./Category";
 import "../styles/Guess.css";
-import {AnimalInterface} from "../../../server/src/animals";
+import {AnimalInterface} from "../../../server/src/models/animals";
 
 interface GuessProps {
   animal: AnimalInterface;

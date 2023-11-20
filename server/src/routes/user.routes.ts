@@ -1,6 +1,7 @@
 import * as expresponses from "express";
 import * as mongodb from "mongodb";
-import { User } from "./user";
+import { User } from "../models/user";
+import JWT from "jsonwebtoken";
 
 export const userRouter = expresponses.Router();
 userRouter.use(expresponses.json());
@@ -60,6 +61,48 @@ userRouter.post("/", async (request, response) => {
   }
 });
 
+userRouter.post("/login", async (request, response) => {
+  try {
+    const user = await User.findOne({
+      username: request.body.username,
+      password: request.body.password,
+    });
+    if (!user) {
+      response.status(404).send(`User ${request.body.username} not found`);
+      return;
+    }
+    const token = JWT.sign(
+      {
+        username: user.username,
+        password: user.password,
+      },
+      "secret",
+      { expiresIn: "1h" }
+    );
+    response.status(200).send({ token });
+  } catch (error) {
+    response.status(500).send(error);
+  }
+});
+
+userRouter.post("/register", async (request, response) => {
+  try {
+    const user = new User(request.body);
+    const result = await user.save();
+    const token = JWT.sign(
+      {
+        username: user.username,
+        password: user.password,
+      },
+      "secret",
+      { expiresIn: "1h" }
+    );
+    response.status(200).send({ token });
+  } catch (error) {
+    response.status(500).send(error);
+  }
+});
+
 // PATCH /users/:id modificacion con filtro
 userRouter.patch("/:id", async (request, response) => {
   try {
@@ -88,7 +131,6 @@ userRouter.patch("/:id", async (request, response) => {
     response.status(500).send(error);
   }
 });
-
 
 // PUT /users/:id modificacion total
 userRouter.put("/:id", async (request, response) => {

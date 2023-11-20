@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Guess from "./Guess";
 import GuessForm from "./GuessForm";
 import "../styles/GuessList.css";
-import { AnimalInterface } from "../../../server/src/animals";
+import { AnimalInterface } from "../../../server/src/models/animals";
 
 function GuessList() {
   const [guessList, setGuessList] = useState<AnimalInterface[]>([]);
