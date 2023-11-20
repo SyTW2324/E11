@@ -1,9 +1,10 @@
 import * as mongodb from "mongodb";
-import {Document, model, Schema} from "mongoose";
+import { Document, model, Schema } from "mongoose";
 
 export interface AnimalInterface extends Document {
   _id?: mongodb.ObjectId;
   name: string;
+  searchName: string;
   image: string;
   class: string;
   weight: number;
@@ -15,6 +16,11 @@ export interface AnimalInterface extends Document {
 
 const AnimalSchema = new Schema<AnimalInterface>({
   name: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  searchName: {
     type: String,
     required: true,
     unique: true,

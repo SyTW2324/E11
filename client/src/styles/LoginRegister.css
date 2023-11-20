@@ -67,7 +67,7 @@
     color: #797979;
 }
 
-.forgot-password{
+.forgot-password {
     padding-left: 10px;
     font-family: Roboto, sans-serif;
     margin-top: 10px;
@@ -76,7 +76,7 @@
     font-weight: 700;
 }
 
-.forgot-password span{
+.forgot-password span {
     color: #000000;
     cursor: pointer;
     font-weight: 700;
@@ -84,11 +84,11 @@
 
 .submit-container {
     display: flex;
-    gap : 30px;
+    gap: 30px;
     margin-top: 60px auto;
 }
 
-.submit{
+.submit {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -106,4 +106,8 @@
 .gray {
     background-color: #eaeaea;
     color: #676767;
+}
+
+.input img {
+    max-width: 20%;
 }

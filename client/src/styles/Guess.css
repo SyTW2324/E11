@@ -12,9 +12,9 @@
 
 }
 
-img {
-    width: 15vw; /* Set the width */
-    height: 15vw; /* Set the height */
+div > img {
+    width: 50%;
+    height: 80%;
     margin-left: 2em;
     border-radius: 5px;
 }
