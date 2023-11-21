@@ -1,12 +1,12 @@
 import * as mongodb from "mongodb";
 import {Document, model, Schema} from "mongoose";
 
-export interface UserInterface {
+export interface UserInterface extends Document {
   _id?: mongodb.ObjectId;
   username: string;
   password: string;
-  image: string;
   email: string;
+  image: string;
   points: number;
   friends?: mongodb.ObjectId[];
 }
