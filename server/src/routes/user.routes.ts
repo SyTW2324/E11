@@ -1,7 +1,7 @@
 import * as expresponses from "express";
 import * as mongodb from "mongodb";
-import bcrypt from 'bcrypt';
-import { User } from "../../models/user";
+import bcrypt from "bcrypt";
+import { User } from "../models/user";
 import JWT from "jsonwebtoken";
 
 export const userRouter = expresponses.Router();
@@ -69,23 +69,25 @@ userRouter.post("/login", async (req, res) => {
   const user = await User.findOne({ email });
 
   if (!user) {
-    return res.status(400).send('Invalid email or password');
+    return res.status(400).send("Invalid email or password");
   }
 
   // Compara la contraseña proporcionada con la del usuario
   const validPassword = await bcrypt.compare(password, user.password);
 
   if (!validPassword) {
-    return res.status(400).send('Invalid email or password');
+    return res.status(400).send("Invalid email or password");
   }
 
   // Genera un token de JWT
-  const token = JWT.sign({ _id: user._id, email: user.email }, 'your_jwt_secret');
+  const token = JWT.sign(
+    { _id: user._id, email: user.email },
+    "your_jwt_secret"
+  );
 
   // Envía el token al cliente
   res.send(token);
-}
-);
+});
 
 userRouter.post("/register", async (request, response) => {
   try {

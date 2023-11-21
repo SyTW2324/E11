@@ -1,5 +1,5 @@
 import * as express from "express";
-import { Animal } from "../../models/animals";
+import { Animal } from "../models/animals";
 
 export const animalsRouter = express.Router();
 animalsRouter.use(express.json());
