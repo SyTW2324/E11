@@ -2,7 +2,7 @@
 
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3000'; // URL de la API
+const API_URL = 'http://localhost:5000/';
 // Función para realizar el registro de usuario
 export const register = async (userData: any): Promise<any> => {
   const response = await axios.post(`${API_URL}/register`, userData);

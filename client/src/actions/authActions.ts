@@ -1,8 +1,6 @@
 // client/src/actions/authActions.ts
-
 import { ThunkAction } from 'redux-thunk';
-import { RootState } from '../reducers'; // Import the RootState type from the correct file
-
+import { RootState } from '../reducers';
 import { AuthActionTypes, SET_USER, SET_ERROR, LOGOUT } from './types';
 import { register, login, getUserInfo } from '../services/authService';
 
@@ -18,6 +16,8 @@ export const setError = (error: string): AuthActionTypes => ({
   payload: error,
 });
 
+
+
 // Acción para realizar el registro de usuario
 export const registerUser = (
   userData: any
@@ -25,7 +25,7 @@ export const registerUser = (
   try {
     const response = await register(userData);
     dispatch(setUser(response.user));
-  } catch (error) {
+  } catch (error: any) {
     dispatch(setError(error.response.data.message));
   }
 };
@@ -37,7 +37,7 @@ export const loginUser = (
   try {
     const response = await login(userData);
     dispatch(setUser(response.user));
-  } catch (error) {
+  } catch (error: any) {
     dispatch(setError(error.response.data.message));
   }
 };
@@ -58,3 +58,6 @@ export const checkUser = (): ThunkAction<void, RootState, null, AuthActionTypes>
 export const logoutUser = (): AuthActionTypes => ({
   type: LOGOUT,
 });
+
+export type { AuthActionTypes };
+

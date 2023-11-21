@@ -1,5 +1,6 @@
 import * as expresponses from "express";
 import * as mongodb from "mongodb";
+import bcrypt from 'bcrypt';
 import { User } from "../models/user";
 import JWT from "jsonwebtoken";
 
@@ -61,29 +62,30 @@ userRouter.post("/", async (request, response) => {
   }
 });
 
-userRouter.post("/login", async (request, response) => {
-  try {
-    const user = await User.findOne({
-      username: request.body.username,
-      password: request.body.password,
-    });
-    if (!user) {
-      response.status(404).send(`User ${request.body.username} not found`);
-      return;
-    }
-    const token = JWT.sign(
-      {
-        username: user.username,
-        password: user.password,
-      },
-      "secret",
-      { expiresIn: "1h" }
-    );
-    response.status(200).send({ token });
-  } catch (error) {
-    response.status(500).send(error);
+userRouter.post("/login", async (req, res) => {
+  const { email, password } = req.body;
+
+  // Busca el usuario en la base de datos
+  const user = await User.findOne({ email });
+
+  if (!user) {
+    return res.status(400).send('Invalid email or password');
   }
-});
+
+  // Compara la contraseña proporcionada con la del usuario
+  const validPassword = await bcrypt.compare(password, user.password);
+
+  if (!validPassword) {
+    return res.status(400).send('Invalid email or password');
+  }
+
+  // Genera un token de JWT
+  const token = JWT.sign({ _id: user._id, email: user.email }, 'your_jwt_secret');
+
+  // Envía el token al cliente
+  res.send(token);
+}
+);
 
 userRouter.post("/register", async (request, response) => {
   try {
