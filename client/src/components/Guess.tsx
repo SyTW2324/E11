@@ -1,8 +1,8 @@
 import React from "react";
-import {useState} from "react";
+import { useState, useEffect } from "react";
 import Category from "./Category";
 import "../styles/Guess.css";
-import {AnimalInterface} from "../../../server/src/models/animals";
+import { AnimalInterface } from "../../../server/src/models/animals";
 
 interface GuessProps {
   animal: AnimalInterface;
@@ -10,9 +10,7 @@ interface GuessProps {
 }
 
 function Guess(props: GuessProps) {
-  if (!props.random) {
-    return null;
-  }
+
   function compareStringArrays(category1: string[], category2: string[]) {
     if (
       category2.every((element) => category1.includes(element)) &&

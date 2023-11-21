@@ -6,15 +6,16 @@ import "../styles/GuessForm.css";
 interface GuessProps {
   onAnimalChange: (newAnimal: AnimalInterface) => void,
   finished: boolean
+  tries: number
 }
 
 function GuessForm({
   onAnimalChange,
-  finished
+  finished,
+  tries
 }: GuessProps) {
   const [input, setInput] = useState("");
   const [recomendations, setRecomendations] = useState<string[]>([])
-  const [tries, setTries] = useState(0);
 
 
   const searchRecomendations = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -52,7 +53,6 @@ function GuessForm({
       const data = await response.json();
       onAnimalChange(data);
       setInput("");
-      setTries(tries + 1);
     } catch (error) {
       console.error("There was a problem with the fetch operation:", error);
     }
