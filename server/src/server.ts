@@ -5,7 +5,10 @@ import {userRouter} from "./routes/user.routes";
 import cors from "cors";
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: "http://localhost:3000",
+  credentials: true,
+}));
 app.use("/animals", animalsRouter);
 app.use("/users", userRouter);
 
