@@ -1,16 +1,27 @@
 .category-container {
     font-family: Roboto, sans-serif;
     display: flex;
-    flex-direction: column;
-    border-radius: 5px;
+    flex-flow: row wrap;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    height: 50%;
+    width: 100%;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5)
 }
 
 .category-incorrect {
     background-color: #ff000090;
+    border-radius: 10px;
+    height: 100%;
+    width: 100%;
 }
 
 .category-correct {
     background-color: rgb(32, 192, 32);
+    border-radius: 10px;
+    height: 100%;
+    width: 100%;
 }
 
 .category-lesser {
@@ -18,6 +29,9 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-clip: border-box;
+    border-radius: 10px;
+    height: 100%;
+    width: 100%;
 }
 
 .category-greater {
@@ -25,14 +39,20 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-clip: border-box;
+    border-radius: 10px;
+    height: 100%;
+    width: 100%;
 }
 
 .category-partial {
     background-color: rgba(255, 140, 0);
+    border-radius: 10px;
+    height: 100%;
+    width: 100%;
 }
 
 p {
-    font-size: 1em;
+    font-size: 120%;
     font-weight: bold;
     margin: 0;
     text-align: center;
