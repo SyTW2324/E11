@@ -1,81 +1,93 @@
-// server/src/controllers/authController.ts
-
-import { Request, Response } from 'express';
+import {User} from '../models/user';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import {User} from '../models/user';
+import { Request, Response } from 'express';
+import { Secret } from 'jsonwebtoken';
 
-// Función para registrar un nuevo usuario
-export const register = async (req: Request, res: Response): Promise<void> => {
-  try {
-    const { username, email, password } = req.body;
+const handleLogin = async (req: any, res: any) => {
+    const cookies = req.cookies;
 
-    // Verificar si el usuario ya existe
-    const existingUser = await User.findOne({ email });
-    if (existingUser) {
-       res.status(400).json({ message: 'User already exists' });
-       return;
+    const { user, pwd } = req.body;
+    if (!user || !pwd) return res.status(400).json({ 'message': 'Username and password are required.' });
+
+    const foundUser = await User.findOne({ username: user }).exec();
+    if (!foundUser) return res.sendStatus(401); //Unauthorized 
+    // evaluate password 
+    const match = await bcrypt.compare(pwd, foundUser.password);
+    if (match) {
+        const roles = Object.values((foundUser as any).roles).filter(Boolean);
+        // create JWTs
+
+        const accessTokenSecret: Secret | undefined = process.env.ACCESS_TOKEN_SECRET;
+
+        if (!accessTokenSecret) {
+            throw new Error('ACCESS_TOKEN_SECRET environment variable is not set');
+        }
+
+        const accessToken = jwt.sign(
+            {
+                "UserInfo": {
+                    "username": foundUser.username,
+                    "roles": roles
+                }
+            },
+            accessTokenSecret,
+            { expiresIn: '10s' }
+        );
+
+        const refreshTokenSecret: Secret | undefined = process.env.REFRESH_TOKEN_SECRET;
+
+        if (!refreshTokenSecret) {
+            throw new Error('REFRESH_TOKEN_SECRET environment variable is not set');
+        }
+
+        const newRefreshToken = jwt.sign(
+            { "username": foundUser.username },
+            refreshTokenSecret,
+            { expiresIn: '15s' }
+        );
+
+        // Changed to let keyword
+        let newRefreshTokenArray =
+            !cookies?.jwt
+                ? (foundUser as any).refreshToken
+                : (foundUser as any).refreshToken.filter((rt: any) => rt !== cookies.jwt);
+
+        if (cookies?.jwt) {
+
+            /* 
+            Scenario added here: 
+                1) User logs in but never uses RT and does not logout 
+                2) RT is stolen
+                3) If 1 & 2, reuse detection is needed to clear all RTs when user logs in
+            */
+            const refreshToken = cookies.jwt;
+            const foundToken = await User.findOne({ refreshToken }).exec();
+
+            // Detected refresh token reuse!
+            if (!foundToken) {
+                // clear out ALL previous refresh tokens
+                newRefreshTokenArray = [];
+            }
+
+            res.clearCookie('jwt', { httpOnly: true, sameSite: 'None', secure: true });
+        }
+
+        // Saving refreshToken with current user
+        foundUser.refreshToken = [...newRefreshTokenArray, newRefreshToken];
+        const result = await foundUser.save();
+
+
+
+        // Creates Secure Cookie with refresh token
+        res.cookie('jwt', newRefreshToken, { httpOnly: true, secure: true, sameSite: 'None', maxAge: 24 * 60 * 60 * 1000 });
+
+        // Send authorization roles and access token to user
+        res.json({ accessToken });
+
+    } else {
+        res.sendStatus(401);
     }
+}
 
-    // Hash de la contraseña
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    // Crear un nuevo usuario
-    const newUser = new User({ username, email, password: hashedPassword });
-    await newUser.save();
-
-    // Generar token JWT
-    const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET as string);
-
-    // Enviar el token y la información del usuario
-    res.json({ token, user: { id: newUser._id, username: newUser.username, email: newUser.email } });
-  } catch (error) {
-    console.error('Error registering user:', error);
-    res.status(500).json({ message: 'Internal Server Error' });
-  }
-};
-
-// Función para iniciar sesión
-export const login = async (req: Request, res: Response): Promise<void> => {
-  try {
-    const { email, password } = req.body;
-
-    // Verificar si el usuario existe
-    const user = await User.findOne({ email });
-    if (!user) {
-       res.status(401).json({ message: 'Invalid credentials' });
-       
-return;
-    }
-
-    // Verificar la contraseña
-    const isPasswordValid = await bcrypt.compare(password, user.password);
-    if (!isPasswordValid) {
-       res.status(401).json({ message: 'Invalid credentials' });
-       return;
-    }
-
-    // Generar token JWT
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET as string);
-
-    // Enviar el token y la información del usuario
-    res.json({ token, user: { id: user._id, username: user.username, email: user.email } });
-  } catch (error) {
-    console.error('Error logging in:', error);
-    res.status(500).json({ message: 'Internal Server Error' });
-  }
-};
-
-// Función para obtener información del usuario autenticado
-export const getUserInfo = async (req: Request, res: Response): Promise<void> => {
-  try {
-    // El usuario se adjunta al objeto de solicitud durante la verificación del token
-    const user = (req as any).user;
-
-    // Enviar la información del usuario
-    res.json({ user: { id: user.id, username: user.username, email: user.email } });
-  } catch (error) {
-    console.error('Error getting user info:', error);
-    res.status(500).json({ message: 'Internal Server Error' });
-  }
-};
+export default handleLogin;

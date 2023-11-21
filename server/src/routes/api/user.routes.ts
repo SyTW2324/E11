@@ -1,7 +1,7 @@
 import * as expresponses from "express";
 import * as mongodb from "mongodb";
 import bcrypt from 'bcrypt';
-import { User } from "../models/user";
+import { User } from "../../models/user";
 import JWT from "jsonwebtoken";
 
 export const userRouter = expresponses.Router();

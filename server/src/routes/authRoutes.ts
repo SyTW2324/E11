@@ -1,5 +1,5 @@
 // server/src/routes/authRoutes.ts
-
+/*
 import express from 'express';
 import * as authController from '../controllers/authController';
 import { authenticateToken } from '../utils/authMiddleware';
@@ -14,3 +14,4 @@ router.post('/login', authController.login);
 router.get('/user-info', authenticateToken, authController.getUserInfo);
 
 export default router;
+*/
