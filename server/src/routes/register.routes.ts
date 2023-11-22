@@ -23,6 +23,8 @@ registerRouter.post("/", async (request, response) => {
       return;
     }
 
+    /*
+    En principio esto no hace falta porque el modelo ya lo verifica
     let user = await User.findOne({ username: request.body.username });
     if (user) {
       response.status(400).send("El usuario ya existe");
@@ -34,8 +36,9 @@ registerRouter.post("/", async (request, response) => {
       response.status(400).send("El email ya existe");
       return;
     }
+    */
 
-    user = new User({
+    let user = new User({
       username: request.body.username,
       password: request.body.password,
       email: request.body.email,
