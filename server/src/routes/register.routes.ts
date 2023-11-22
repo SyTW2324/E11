@@ -10,19 +10,26 @@ registerRouter.use(express.json());
 // POST /register crear un nuevo user
 registerRouter.post("/", async (request, response) => {
   try {
-    console.log(request.body);
+    console.log("request " + Object.values(request.body));
     const schema = joi.object({
       username: joi.string().required(),
+      email: joi.string().required(),
       password: joi.string().required(),
-      email: joi.string().required().email(),
     });
+    console.log("schema " + schema);
     const validation = schema.validate(request.body);
     if (validation.error) {
       response.status(400).send(validation.error);
       return;
     }
 
-    let user = await User.findOne({ email: request.body.email });
+    let user = await User.findOne({ username: request.body.username });
+    if (user) {
+      response.status(400).send("El usuario ya existe");
+      return;
+    }
+
+    user = await User.findOne({ email: request.body.email });
     if (user) {
       response.status(400).send("El email ya existe");
       return;
@@ -45,7 +52,13 @@ registerRouter.post("/", async (request, response) => {
 
     const token = genAuthToken(user);
 
-    response.send({ token });
+    console.log("token " + token);
+
+    response.header("x-auth-token", token).send({
+      _id: user._id,
+      username: user.username,
+      email: user.email,
+    });
   } catch (error) {
     console.log(error);
     response.status(500).send("Error en el servidor");

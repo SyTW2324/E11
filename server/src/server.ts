@@ -15,7 +15,7 @@ app.use(cors({
 }));
 
 app.use("/animals", animalsRouter);
-app.use("/users", userRouter);
+app.use("/user", userRouter);
 app.use("/register", registerRouter);
 app.use("/login", loginRouter);
 
