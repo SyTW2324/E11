@@ -7,7 +7,6 @@ import { User } from "./models/user";
 import { Animal } from "./models/animals";
 import { registerRouter } from "./routes/register.routes";
 import { loginRouter } from "./routes/login.routes";
-require('dotenv').config();
 
 export const app = express();
 app.use(cors({

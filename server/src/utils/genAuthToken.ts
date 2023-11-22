@@ -1,10 +1,10 @@
 import Jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+import path from "path";
 
-dotenv.config();
+dotenv.config({ path: path.resolve(__dirname, "../.env")});
 
 export const genAuthToken = (user : any) => {
-  console.log(process.env);
   const secret_key = process.env.JWT_SECRET_KEY
 
   if (!secret_key) {
