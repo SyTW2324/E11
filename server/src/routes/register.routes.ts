@@ -54,11 +54,7 @@ registerRouter.post("/", async (request, response) => {
 
     console.log("token " + token);
 
-    response.header("x-auth-token", token).send({
-      _id: user._id,
-      username: user.username,
-      email: user.email,
-    });
+    response.send(token);
   } catch (error) {
     console.log(error);
     response.status(500).send("Error en el servidor");
