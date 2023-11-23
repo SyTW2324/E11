@@ -48,7 +48,6 @@ export const registerUser = createAsyncThunk(
       });
 
       localStorage.setItem("token", token.data);
-      console.log("llega aqui " + Object.values(token));
 
       return token.data;
     } catch (error) {
@@ -73,6 +72,7 @@ export const loginUser = createAsyncThunk(
       });
 
       localStorage.setItem("token", token.data);
+
       return token.data;
     } catch (error) {
       if (error instanceof Error) {

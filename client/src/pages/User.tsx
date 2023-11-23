@@ -43,8 +43,6 @@ function User() {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
 
-
-    // dispatch(updateUser(user) as any);
     toast.success("Usuario actualizado");
   };
 

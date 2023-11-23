@@ -64,3 +64,15 @@
     height: 100%;
     width: 100%;
 }
+
+.exit-icon {
+    display: flex;
+    border-radius: 50%;
+    justify-content: center;
+    background-color: white;
+    border: 2px solid black;
+    align-items: center;
+    height: 100px;
+    width: 100px;
+    margin: 10%;
+}

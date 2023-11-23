@@ -55,8 +55,6 @@ registerRouter.post("/", async (request, response) => {
 
     const token = genAuthToken(user);
 
-    console.log("token " + token);
-
     response.send(token);
   } catch (error) {
     console.log(error);

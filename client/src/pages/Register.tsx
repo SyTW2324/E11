@@ -18,8 +18,6 @@
       password: "",
     });
 
-
-
   useEffect(() => {
     if (auth._id) {
       navigate("/home");

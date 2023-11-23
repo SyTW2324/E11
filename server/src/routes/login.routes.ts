@@ -35,14 +35,9 @@ loginRouter.post("/", async (request, response) => {
       return;
     }
 
-    // problema: Invalid token specified: must be a string InvalidTokenError: Invalid token specified: must be a string
-    // solución: https://stackoverflow.com/questions/67751636/invalid-token-specified-must-be-a-string-invalidtokenerror-invalid-token-spe
-
-    console.log ("user ", user._id, " ", user.username, " ", user.email, " ", user.password);
-
     const token = genAuthToken(user);
 
-    response.send({ token });
+    response.send(token);
   } catch (error) {
     console.log(error);
     response.status(500).send("Error en el servidor");
