@@ -3,8 +3,6 @@ import "./database";
 import cors from "cors";
 import { animalsRouter } from "./routes/animals.routes";
 import { userRouter } from "./routes/user.routes";
-import { User } from "./models/user";
-import { Animal } from "./models/animals";
 import { registerRouter } from "./routes/register.routes";
 import { loginRouter } from "./routes/login.routes";
 
