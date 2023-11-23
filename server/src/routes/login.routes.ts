@@ -10,7 +10,6 @@ loginRouter.use(express.json());
 // POST /login crear un nuevo user
 loginRouter.post("/", async (request, response) => {
   try {
-    console.log(request.body);
     const schema = joi.object({
       password: joi.string().required(),
       email: joi.string().required().email(),
@@ -35,6 +34,11 @@ loginRouter.post("/", async (request, response) => {
       response.status(400).send("La contraseña no es válida");
       return;
     }
+
+    // problema: Invalid token specified: must be a string InvalidTokenError: Invalid token specified: must be a string
+    // solución: https://stackoverflow.com/questions/67751636/invalid-token-specified-must-be-a-string-invalidtokenerror-invalid-token-spe
+
+    console.log ("user ", user._id, " ", user.username, " ", user.email, " ", user.password);
 
     const token = genAuthToken(user);
 
