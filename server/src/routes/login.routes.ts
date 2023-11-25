@@ -16,13 +16,13 @@ loginRouter.post("/", async (request, response) => {
     });
     const validation = schema.validate(request.body);
     if (validation.error) {
-      response.status(400).send(validation.error);
+      response.status(422).send(validation.error);
       return;
     }
 
     let user = await User.findOne({ email: request.body.email });
     if (!user) {
-      response.status(400).send("El email no existe");
+      response.status(404).send("El email no existe");
       return;
     }
 
@@ -31,13 +31,13 @@ loginRouter.post("/", async (request, response) => {
       user.password
     );
     if (!validPassword) {
-      response.status(400).send("La contraseña no es válida");
+      response.status(401).send("La contraseña no es válida");
       return;
     }
 
     const token = genAuthToken(user);
 
-    response.send(token);
+    response.status(200).send(token);
   } catch (error) {
     console.log(error);
     response.status(500).send("Error en el servidor");

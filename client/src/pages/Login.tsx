@@ -8,6 +8,13 @@ import { useDispatch } from "react-redux";
 import { loginUser } from "../slices/authSlice";
 import { useState } from "react";
 
+const errorMessages = {
+  'Request failed with status code 404': 'Usuario no encontrado',
+  'Request failed with status code 422': 'Formato de correo electrónico inválido',
+  'Request failed with status code 401': 'Contraseña incorrecta',
+  'Request failed with status code 500': 'Error en el servidor, intente más tarde',
+}
+
 function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -57,7 +64,7 @@ function Login() {
                     name="email"
                     id="email"
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="name@company.com"
+                    placeholder="ejemplo@email.com"
                     onChange={(e) =>
                       setUser({ ...user, email: e.target.value })
                     }
@@ -85,7 +92,7 @@ function Login() {
                   type="submit"
                   className="w-full text-black bg-verde-hoja hover:bg-verde-sabana focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                 >
-                  Sign in
+                  Iniciar sesión
                 </button>
                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                   ¿No te has registrado?{" "}
@@ -93,12 +100,12 @@ function Login() {
                     href="./register"
                     className="font-medium text-primary-600 hover:underline dark:text-primary-500"
                   >
-                    Sign up
+                    Regístrate ahora
                   </a>
                 </p>
                 {auth.loginStatus === "rejected" ? (
                   <p className="text-red-500 text-xs italic">
-                    {auth.loginError}
+                    {errorMessages[auth.loginError as keyof typeof errorMessages]}
                   </p>
                 ) : null}
               </form>
