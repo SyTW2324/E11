@@ -13,12 +13,12 @@ function Home() {
 
   console.log(auth);
   return (
-    <div className="Home">
+    <div className="Home flex flex-col min-h-screen">
       <Header />
-      <div className="main-container">
+      <main className="main-container">
         <h2> Adivina el animal de hoy </h2>
         <GuessList />
-      </div>
+      </main>
       <Footer />
     </div>
   );
