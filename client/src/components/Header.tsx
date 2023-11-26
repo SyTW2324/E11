@@ -45,11 +45,11 @@ function Header() {
       <div className="header-container">
         <div className="login-icon">
           {auth._id ? (
-            <Link to="/user">
+            <Link id="user" to="/user">
               <img src={login} alt="loginRegister-icon" />
             </Link>
           ) : (
-            <Link to="/login">
+            <Link id="login" to="/login">
               <img src={login} alt="loginRegister-icon" />
             </Link>
           )}
@@ -60,7 +60,7 @@ function Header() {
           </Link>
         </div>
         <div className="ranking-icon">
-          <Link to="/ranking">
+          <Link id="ranking" to="/ranking">
             <img src={medal} alt="ranking-icon" />
           </Link>
         </div>
@@ -72,7 +72,7 @@ function Header() {
                 dispatch(logoutUser(null) as any);
               }}
             >
-              <img src={exit} alt="exit-icon" />
+              <img id="logout" src={exit} alt="exit-icon" />
             </Logout>
           </div>
         ) : (

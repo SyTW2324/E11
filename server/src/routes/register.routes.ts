@@ -19,26 +19,23 @@ registerRouter.post("/", async (request, response) => {
     console.log("schema " + schema);
     const validation = schema.validate(request.body);
     if (validation.error) {
-      response.status(400).send(validation.error);
+      response.status(422).send(validation.error);
       return;
     }
 
-    /*
-    En principio esto no hace falta porque el modelo ya lo verifica
     let user = await User.findOne({ username: request.body.username });
     if (user) {
-      response.status(400).send("El usuario ya existe");
+      response.status(409).send("El usuario ya existe");
       return;
     }
 
     user = await User.findOne({ email: request.body.email });
     if (user) {
-      response.status(400).send("El email ya existe");
+      response.status(409).send("El email ya existe");
       return;
     }
-    */
 
-    let user = new User({
+    user = new User({
       username: request.body.username,
       password: request.body.password,
       email: request.body.email,
@@ -49,13 +46,13 @@ registerRouter.post("/", async (request, response) => {
 
     const result = await user.save();
     if (!result) {
-      response.status(400).send("Error al crear el usuario");
+      response.status(500).send("Error al crear el usuario");
       return;
     }
 
     const token = genAuthToken(user);
 
-    response.send(token);
+    response.send(token).status(201);
   } catch (error) {
     console.log(error);
     response.status(500).send("Error en el servidor");

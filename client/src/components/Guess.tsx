@@ -40,7 +40,7 @@ function Guess(props: GuessProps) {
   }
 
   return (
-    <div className="guess-container">
+    <div id={props.animal.name} className="guess-container">
       <div className="guess-image">
         <img src={props.animal.image} alt={props.animal.name} />
       </div>
