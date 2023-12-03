@@ -3,7 +3,7 @@ describe('home', () => {
     cy.visit('http://localhost:3000/home')
     cy.get('h1').should('contain', 'Wildle')
   });
-  it('shoul access to login page', () => {
+  it('should access to login page', () => {
     cy.visit('http://localhost:3000/home')
     cy.get('a[id="login"]').click()
     cy.url().should('include', '/login')
