@@ -62,16 +62,31 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
+    - name: Setup Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: '14.x'
+
     # Install dependencies and run tests for the client application
     - name: Install and Test Client
       working-directory: ./client
-      run: |
-        npm install
-        npm run test
+      run: npm install
+
 
     # Install dependencies, export environment variables to be used by application and run tests for the server application
     - name: Install and Test Server
       working-directory: ./server
+      run: npm install
+
+    - name: Start app
+      working-directory: ./
       run: |
         npm install
-        npm run test
+        npm run start
+
+    - name: Wait for app to start
+      run: npx wait-on http://localhost:3000
+
+    - name: Run tests
+      working-directory: ./client
+      run: npm run test
