@@ -20,12 +20,12 @@ jobs:
       with:
         node-version: '20.x'
 
-    - name: Slack Notify
-      uses: rtCamp/action-slack-notify@v2.2.1
-      env:
-        SLACK_CHANNEL: #11
-        SLACK_USERNAME: sytw
-        SLACK_WEBHOOK: GgiUiOJJeifKY0uamYUGF1Zr
+    #- name: Slack Notify
+    #  uses: rtCamp/action-slack-notify@v2.2.1
+    #  env:
+    #    SLACK_CHANNEL: #11
+    #    SLACK_USERNAME: sytw
+    #    SLACK_WEBHOOK: GgiUiOJJeifKY0uamYUGF1Zr
             
 
     # Install dependencies client
