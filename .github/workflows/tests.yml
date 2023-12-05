@@ -8,7 +8,7 @@ on:
 
 jobs:
   # build-and-deploy:
-  #   runs-on: ubuntu-latest
+  # runs-on: ubuntu-latest
   #   steps:
   #     # Checkout the code from the GitHub repository
   #     - name: Checkout code
@@ -56,12 +56,22 @@ jobs:
       #     docker push rakeshpotnuru/productivity-app:client-${{github.run_number}}
       #     docker push rakeshpotnuru/productivity-app:server-${{github.run_number}}
   test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Install dependencies
-        run: cd server && npm install
-        run: cd client && npm install
+   runs-on: ubuntu-latest
+   steps:
+    # Checkout the code from the GitHub repository
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-      - name: Run tests cypress
-        run: cd client && npm run test
-    
+    # Install dependencies and run tests for the client application
+    - name: Install and Test Client
+      working-directory: ./client
+      run: |
+        npm install
+        npm run test
+
+    # Install dependencies, export environment variables to be used by application and run tests for the server application
+    - name: Install and Test Server
+      working-directory: ./server
+      run: |
+        npm install
+        npm run test
