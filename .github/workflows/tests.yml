@@ -68,21 +68,21 @@ jobs:
         node-version: '14.x'
 
     # Install dependencies and run tests for the client application
-    - name: Install and Test Client
+    - name: Install dependencies Client
       working-directory: ./client
       run: npm install
 
 
     # Install dependencies, export environment variables to be used by application and run tests for the server application
-    - name: Install and Test Server
+    - name: Install dependencies Server
       working-directory: ./server
       run: npm install
 
-    - name: Start app
+    - name: Install dependencies and start app
       working-directory: ./
       run: |
         npm install
-        npm run start
+        npm run start &
 
     - name: Wait for app to start
       run: npx wait-on http://localhost:3000
