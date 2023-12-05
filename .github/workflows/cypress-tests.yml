@@ -18,7 +18,7 @@ jobs:
             - name: Install dependencies
               run: npm install
             - name: Start the App
-              run: npm run start
+              run: npm run start &
               working-directory: ./
             - name: Run Cypress tests
               uses: cypress-io/github-action@v6
