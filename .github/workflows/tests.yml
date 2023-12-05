@@ -88,5 +88,5 @@ jobs:
       run: npx wait-on http://localhost:3000
 
     - name: Run tests
-      working-directory: ./client
+      working-directory: ./
       run: npm test
