@@ -20,10 +20,6 @@ jobs:
       with:
         node-version: '20.x'
 
-    - name: Slack Notify
-      uses: rtCamp/action-slack-notify@v2.2.1
-            
-
     # Install dependencies client
     - name: Install dependencies Client
       working-directory: ./client
@@ -50,29 +46,29 @@ jobs:
     - name: Stop app
       run: npm stop
 
-  # Build and deploy client on gh-pages
-  deploy-client:
-    needs: build-and-deploy
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+  # # Build and deploy client on gh-pages
+  # deploy-client:
+  #   needs: build-and-deploy
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v2
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20.x'
+  #     - name: Setup Node.js
+  #       uses: actions/setup-node@v4
+  #       with:
+  #         node-version: '20.x'
 
-      - name: Install dependencies
-        run: npm install
+  #     - name: Install dependencies
+  #       run: npm install
 
-      - name: Build
-        run: npm run build
+  #     - name: Build
+  #       run: npm run build
 
-      - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@4.1.1
-        with:
-          branch: gh-pages
-          folder: ./client/build
-          clean: true
-          token: ${{ secrets.GITHUB_TOKEN }}
+  #     - name: Deploy
+  #       uses: JamesIves/github-pages-deploy-action@4.1.1
+  #       with:
+  #         branch: gh-pages
+  #         folder: ./client/build
+  #         clean: true
+  #         token: ${{ secrets.GITHUB_TOKEN }}
