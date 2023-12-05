@@ -8,6 +8,13 @@ jobs:
         steps:
             - name: Checkout
               uses: actions/checkout@v4
+            - name: Install dependencies Client
+              working-directory: ./client
+              run: npm i
+            - name: Install dependencies Server
+              working-directory: ./server
+              run: npm i
+        
             - name: Install dependencies
               run: npm install
             - name: Run Cypress tests
