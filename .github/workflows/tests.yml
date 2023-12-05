@@ -22,6 +22,8 @@ jobs:
 
     - name: Slack Notify
       uses: rtCamp/action-slack-notify@v2.2.1
+      env:
+        SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
             
 
     # Install dependencies client
