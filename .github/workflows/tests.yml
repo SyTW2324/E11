@@ -8,7 +8,7 @@ on:
 
 jobs:
   
-  test:
+  build and deploy:
    runs-on: ubuntu-latest
    steps:
     # Checkout the code from the GitHub repository
@@ -19,6 +19,10 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: '20.x'
+
+    - name: Slack Notify
+      uses: rtCamp/action-slack-notify@v2.2.1
+            
 
     # Install dependencies client
     - name: Install dependencies Client
@@ -45,23 +49,6 @@ jobs:
     
     - name: Stop app
       run: npm stop
-
-# deploy:
-  # runs-on: ubuntu-latest
-  # steps:
-  #   # Checkout the code from the GitHub repository
-  #   - name: Checkout code
-  #     uses: actions/checkout@v3
-
-  #   # Install dependencies and run tests for the client application
-  #   - name: Install and Test Client
-  #     working-directory: ./client
-  #     run: npm install  
-
-  #   # Install dependencies, export environment variables to be used by application and run tests for the server application
-  #   - name: Install and Test Server
-  #     working-directory: ./server
-  #     run: npm install   
 
   # # Build a Docker image for the client application
   #   - name: Build Client Docker Image
