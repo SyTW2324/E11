@@ -22,6 +22,8 @@ jobs:
             - name: Start the App
               run: npm run start &
               working-directory: ./
+            - name: Verify the App is running
+              run: sleep 10 && curl http://localhost:3000
             - name: Run Cypress tests
               uses: cypress-io/github-action@v6
               with:
