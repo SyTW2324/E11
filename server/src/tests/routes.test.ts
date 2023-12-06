@@ -3,8 +3,10 @@ import { expect } from "chai";
 import mongoose from "mongoose";
 import { app } from "../server";
 import { after } from "mocha";
+import dotenv from "dotenv";
+import path from "path";
 
-require("dotenv").config();
+dotenv.config({ path: path.resolve(__dirname, "../.env")});
 
 beforeAll(async () => {
   const res = await request(app).post("/register").send({
@@ -57,7 +59,7 @@ describe("animal routes", () => {
 });
 
 describe("register routes", () => {
-  it("should post a new user", async () => {
+  it("should register a new user", async () => {
     const res = await request(app).post("/register").send({
       username: "test",
       password: "test",
