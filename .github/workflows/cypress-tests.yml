@@ -14,22 +14,19 @@ jobs:
         run: rm -rf ./client/node_modules && rm -rf ./server/node_modules && rm -rf ./node_modules
       - name: Install dependencies Client
         working-directory: ./client
-        run: |
-          for i in {1..5}; do npm ci && break || sleep 15; done
+        run: npm ci
       - name: Install dependencies Server
         working-directory: ./server
-        run: |
-          for i in {1..5}; do npm ci && break || sleep 15; done
+        run: npm ci
       - name: Install dependencies
-        run: |
-          for i in {1..5}; do npm ci && break || sleep 15; done
+        run: npm ci
       - name: Start the App
         run: npm run start &
         working-directory: ./
       - name: Verify the App is running
         run: sleep 10 && curl http://localhost:3000
       - name: Run Cypress tests
-        uses: cypress-io/github-action@v6
+        uses: cypress-io/github-action@v2
         with:
           browser: chrome
           wait-on: 'http://localhost:3000'
