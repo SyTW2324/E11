@@ -22,6 +22,7 @@ loginRouter.post("/", async (request, response) => {
 
     let user = await User.findOne({ email: request.body.email });
     if (!user) {
+      console.log("El email no existe");
       response.status(404).send("El email no existe");
       return;
     }
@@ -31,6 +32,7 @@ loginRouter.post("/", async (request, response) => {
       user.password
     );
     if (!validPassword) {
+      console.log("La contraseña no es válida");
       response.status(401).send("La contraseña no es válida");
       return;
     }
@@ -38,6 +40,51 @@ loginRouter.post("/", async (request, response) => {
     const token = genAuthToken(user);
 
     response.status(200).send(token);
+  } catch (error) {
+    console.log(error);
+    response.status(500).send("Error en el servidor");
+  }
+});
+
+// DELETE /login eliminar un user
+loginRouter.delete("/", async (request, response) => {
+  try {
+    const schema = joi.object({
+      password: joi.string().required(),
+      email: joi.string().required().email(),
+    });
+    const validation = schema.validate(request.body);
+    if (validation.error) {
+      console.log("validation error " + validation.error);
+      response.status(422).send(validation.error);
+      return;
+    }
+
+    let user = await User.findOne({ email: request.body.email });
+    if (!user) {
+      console.log("El email no existe");
+      response.status(404).send("El email no existe");
+      return;
+    }
+
+    const validPassword = await bcrypt.compare(
+      request.body.password,
+      user.password
+    );
+    if (!validPassword) {
+      console.log("La contraseña no es válida");
+      response.status(401).send("La contraseña no es válida");
+      return;
+    }
+
+    const result = await User.deleteOne({ email: request.body.email });
+    if (!result) {
+      console.log("Error al eliminar el usuario");
+      response.status(500).send("Error al eliminar el usuario");
+      return;
+    }
+
+    response.status(200).send("Usuario eliminado");
   } catch (error) {
     console.log(error);
     response.status(500).send("Error en el servidor");

@@ -7,10 +7,12 @@ import { registerRouter } from "./routes/register.routes";
 import { loginRouter } from "./routes/login.routes";
 
 export const app = express();
-app.use(cors({
-  origin: "http://localhost:3000",
-  credentials: true,
-}));
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+  })
+);
 
 app.use("/animals", animalsRouter);
 app.use("/user", userRouter);

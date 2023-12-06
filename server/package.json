@@ -6,14 +6,23 @@
   "scripts": {
     "start": "ts-node src/server.ts",
     "build": "tsc",
-    "test": "eslint ."
+    "test": "cross-env NODE_ENV=test jest --testTimeout=5000 --forceExit"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node"
   },
   "keywords": [],
   "author": "Febe Fariña Aguirre y Daniel Glez. de Chávez Glez.",
   "license": "ISC",
   "dependencies": {
+    "@babel/core": "^7.23.5",
+    "@babel/preset-env": "^7.23.5",
     "@types/axios": "^0.14.0",
+    "@types/chai": "^4.3.11",
+    "@types/supertest": "^2.0.16",
     "axios": "^1.6.2",
+    "babel-jest": "^29.7.0",
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
@@ -29,8 +38,14 @@
     "@types/bcrypt": "^5.0.2",
     "@types/cors": "^2.8.16",
     "@types/express": "^4.17.21",
+    "@types/jest": "^29.5.11",
     "@types/jsonwebtoken": "^9.0.5",
     "@types/uuid": "^9.0.7",
+    "chai": "^4.3.10",
+    "cross-env": "^7.0.3",
+    "jest": "^29.7.0",
+    "supertest": "^6.3.3",
+    "ts-jest": "^29.1.1",
     "ts-node": "^10.9.1",
     "typescript": "^5.2.2"
   }

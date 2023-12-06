@@ -10,13 +10,11 @@ registerRouter.use(express.json());
 // POST /register crear un nuevo user
 registerRouter.post("/", async (request, response) => {
   try {
-    console.log("request " + Object.values(request.body));
     const schema = joi.object({
       username: joi.string().required(),
       email: joi.string().required(),
       password: joi.string().required(),
     });
-    console.log("schema " + schema);
     const validation = schema.validate(request.body);
     if (validation.error) {
       response.status(422).send(validation.error);
