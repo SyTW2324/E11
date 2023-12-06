@@ -14,12 +14,15 @@ jobs:
         run: rm -rf ./client/node_modules && rm -rf ./server/node_modules && rm -rf ./node_modules
       - name: Install dependencies Client
         working-directory: ./client
-        run: npm ci
+        run: |
+          for i in {1..5}; do npm ci && break || sleep 15; done
       - name: Install dependencies Server
         working-directory: ./server
-        run: npm ci
+        run: |
+          for i in {1..5}; do npm ci && break || sleep 15; done
       - name: Install dependencies
-        run: npm ci
+        run: |
+          for i in {1..5}; do npm ci && break || sleep 15; done
       - name: Start the App
         run: npm run start &
         working-directory: ./
