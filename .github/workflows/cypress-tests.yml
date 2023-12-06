@@ -7,28 +7,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
-      - name: Clear npm cache
-        run: npm cache clean --force
-      - name: Remove node_modules
-        run: rm -rf ./client/node_modules && rm -rf ./server/node_modules && rm -rf ./node_modules
-      - name: Install dependencies Client
-        working-directory: ./client
-        run: npm ci
-      - name: Install dependencies Server
-        working-directory: ./server
-        run: npm ci
-      - name: Install dependencies
-        run: npm ci
-      - name: Start the App
-        run: npm run start &
-        working-directory: ./
-      - name: Verify the App is running
-        run: sleep 10 && curl http://localhost:3000
-      - name: Run Cypress tests
+        uses: actions/checkout@v2
+      - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
-          browser: chrome
+          build: npm run build
+          start: npm run start
           wait-on: 'http://localhost:3000'
-          working-directory: ./client
-              
+          wait-on-timeout: 60
+          browser: chrome
+          parallel: true
