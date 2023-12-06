@@ -40,6 +40,7 @@
     "@types/jest": "^29.5.11",
     "@types/jsonwebtoken": "^9.0.5",
     "@types/mocha": "^10.0.6",
-    "cypress": "^13.6.1"
+    "cypress": "^13.6.1",
+    "postcss": "^8.4.32"
   }
 }

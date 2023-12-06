@@ -11,9 +11,8 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
+          project: ./client
           start: npm run start
           working-directory: ./client
           wait-on: 'http://localhost:3000'
-          wait-on-timeout: 60
           browser: chrome
-          parallel: true
