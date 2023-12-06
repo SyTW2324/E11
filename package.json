@@ -7,7 +7,6 @@
     "start": "npm run prepare && concurrently \"npm run start:server\" \"npm run start:client\"",
     "start:server": "cd server && npm start",
     "start:client": "cd client && npm start",
-    "stop": "npm run stop:server && npm run stop:client",
     "prepare": "concurrently \"npm run prepare:server\" \"npm run prepare:client\"",
     "prepare:server": "cd server && npm install",
     "prepare:client": "cd client && npm install",

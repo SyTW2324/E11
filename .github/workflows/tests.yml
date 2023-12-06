@@ -51,7 +51,3 @@ jobs:
       env:
         JWT_SECRET_KEY: secret
       run: npm test
-    
-    - name: Stop app
-      working-directory: ./
-      run: npm stop

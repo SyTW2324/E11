@@ -6,7 +6,6 @@
   "scripts": {
     "start": "ts-node src/server.ts",
     "build": "tsc",
-    "stop": "killall node",
     "test": "cross-env NODE_ENV=test jest --testTimeout=5000 --forceExit"
   },
   "jest": {

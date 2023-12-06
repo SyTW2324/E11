@@ -37,7 +37,6 @@
     "build": "npm run build:css && react-scripts build",
     "test": "react-scripts test",
     "deploy": "gh-pages -d build",
-    "stop" : "kill $(lsof -t -i:3000)",
     "eject": "react-scripts eject",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run"
