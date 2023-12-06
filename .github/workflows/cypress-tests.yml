@@ -14,6 +14,7 @@ jobs:
           start: npm run start
           working-directory: ./client
           wait-on: 'http://localhost:3000'
+          command: npx cypress run
           wait-on-timeout: 60
           browser: chrome
           parallel: true
