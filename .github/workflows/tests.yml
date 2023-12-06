@@ -43,8 +43,13 @@ jobs:
       working-directory: ./client
       run: npm test
 
+    - name: Ensure port 5000 is free
+      run: sudo kill $(sudo lsof -t -i:5000) || true
+
     - name: Run tests server
       working-directory: ./server
+      env:
+        JWT_SECRET_KEY: secret
       run: npm test
     
     - name: Stop app
