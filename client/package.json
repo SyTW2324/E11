@@ -34,8 +34,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "build:css": "postcss src/index.css -o dist/index.css",
-    "watch:css": "postcss src/index.css -o dist/index.css --watch",
+    "build:css": "npx tailwindcss -i src/index.css -o dist/index.css",
+    "watch:css": "npx tailwindcss -i src/index.css -o dist/index.css -w",
     "start": "npm run watch:css & react-scripts start",
     "build": "npm run build:css && react-scripts build",
     "test": "react-scripts test",
@@ -68,6 +68,7 @@
     "@types/jsonwebtoken": "^9.0.5",
     "@types/mocha": "^10.0.6",
     "@types/redux-logger": "^3.0.12",
-    "cypress": "^13.6.0"
+    "cypress": "^13.6.0",
+    "postcss": "^8.4.32"
   }
 }
