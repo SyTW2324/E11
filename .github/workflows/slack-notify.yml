@@ -1,4 +1,4 @@
-on: []
+on: push
 name: Slack Notification Demo
 jobs:
   slackNotification:
