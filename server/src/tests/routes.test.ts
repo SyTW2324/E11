@@ -17,6 +17,12 @@ beforeAll(async () => {
 });
 
 afterAll(async () => {
+  await request(app).get("/user/test").then((res) => {
+    return request(app).delete("/user/" + res.body._id);
+  });
+  await request(app).get("/user/test2").then((res) => {
+    return request(app).delete("/user/" + res.body._id);
+  });
   mongoose.connection.close();
 });
 
