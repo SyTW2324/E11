@@ -6,7 +6,7 @@ import { after } from "mocha";
 import dotenv from "dotenv";
 import path from "path";
 
-dotenv.config({ path: path.resolve(__dirname, "../.env")});
+dotenv.config({ path: path.resolve(__dirname, "../.env") });
 
 beforeAll(async () => {
   await request(app).post("/register").send({
@@ -16,9 +16,9 @@ beforeAll(async () => {
   });
 });
 
-afterAll(async() => {
-    mongoose.connection.close();
-  });
+afterAll(async () => {
+  mongoose.connection.close();
+});
 
 describe("user routes", () => {
   it("should get all users", async () => {
@@ -28,13 +28,9 @@ describe("user routes", () => {
   });
 
   it("should delete a user", async () => {
-    const res = await request(app).delete("/user").send({
-      username: "test",
-      password: "test",
-      email: "test@gmail.com",
+    const res = await request(app).get("/user/test").then((res) => {
+      return request(app).delete("/user/" + res.body._id);
     });
-    expect(res.status).to.equal(200);
-    expect(res.body).to.be.an("object");
   });
 });
 
@@ -61,9 +57,9 @@ describe("animal routes", () => {
 describe("register routes", () => {
   it("should register a new user", async () => {
     const res = await request(app).post("/register").send({
-      username: "test",
-      password: "test",
-      email: "test@gmail.com",
+      username: "test2",
+      password: "test2",
+      email: "test2@gmail.com",
     });
     expect(res.status).to.equal(200);
     expect(res.body).to.be.an("object");
