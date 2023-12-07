@@ -1,10 +1,14 @@
+/** @type {import('ts-jest/dist/types').InitialOptionsTsJest} */
 module.exports = {
-    preset: "jest-puppeteer",
-    globals: {
-      URL: "http://localhost:3000"
-    },
-    testMatch: [
-      "src/tests/**.test.js"
-    ],
-    verbose: true
-  };
+  transform: {
+    '^.+\\.tsx?$': 'ts-jest',
+    '^.+\\.js$': 'babel-jest',
+  },
+  transformIgnorePatterns: [
+    "/node_modules/(?!axios|node-fetch).+\\.js$"
+  ],
+  moduleNameMapper: {
+    'node-fetch': 'jest-transform-stub',
+    'axios': 'jest-transform-stub'
+  },
+};
