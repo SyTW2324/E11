@@ -32,10 +32,12 @@
     "jsonwebtoken": "^9.0.2",
     "lambdatest-cypress-cli": "^3.0.23",
     "mongodb": "^6.2.0",
+    "puppeteer": "^21.6.0",
     "react": "^18.2.0",
     "react-router-dom": "^6.18.0"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@testing-library/jest-dom": "^6.1.5",
     "@testing-library/react": "^14.1.2",
     "@testing-library/user-event": "^14.5.1",
