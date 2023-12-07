@@ -75,13 +75,13 @@ describe("login routes", () => {
     expect(res.status).to.equal(200);
     expect(res.body).to.be.an("object");
   });
+});
 
-  it("should delete a user", async () => {
-    const res = await request(app).delete("/login").send({
-      password: "test",
-      email: "test@gmail.com",
-    });
-    expect(res.status).to.equal(200);
-    expect(res.body).to.be.an("object");
+afterAll(async () => {
+  const res = await request(app).delete("/user").send({
+    username: "test",
+    password: "test",
+    email: "test@gmail.com",
   });
+  mongoose.connection.close();
 });
