@@ -16,7 +16,12 @@ beforeAll(async () => {
   });
 });
 
-afterAll(() => {
+afterAll(async() => {
+  await request(app).delete("/user").send({
+    username: "test",
+    password: "test",
+    email: "test@gmail.com",
+  });
     mongoose.connection.close();
   });
 
