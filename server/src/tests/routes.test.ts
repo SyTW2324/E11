@@ -8,14 +8,16 @@ import path from "path";
 
 dotenv.config({ path: path.resolve(__dirname, "../.env") });
 
-describe("user routes", () => {
-  beforeAll(async () => {
-    const res = await request(app).post("/register").send({
-      username: "test",
-      password: "test",
-      email: "test@gmail.com",
-    });
+beforeAll(async () => {
+  const res = await request(app).post("/register").send({
+    username: "test",
+    password: "test",
+    email: "test@gmail.com",
   });
+});
+
+describe("user routes", () => {
+ 
 
   it("should get all users", async () => {
     const res = await request(app).get("/user");
