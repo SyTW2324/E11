@@ -25,7 +25,7 @@ describe("Register", () => {
         await page.type('input[name="username"]', "usertest");
         await page.type('input[name="email"]', "test@gmail.com");
         await page.type('input[name="password"]', "test");
-        await page.click('button');
+        await page.click('button[id="register-button"]');
     });
     it("should not register - user already registered", async () => {
         await page.goto("http://localhost:3000/register");
@@ -33,7 +33,7 @@ describe("Register", () => {
         await page.type('input[name="username"]', "fubo");
         await page.type('input[name="email"]', "fubo@gmail.com");
         await page.type('input[name="password"]', "fubo");
-        await page.click('button');
+        await page.click('button[id="register-button"]');
         await page.waitForSelector('p[id="register-error"]');
         const error = await page.$eval('p[id="register-error"]', (e) => e.textContent);
         expect(error).toBe("Request failed with status code 409");
@@ -44,14 +44,14 @@ describe("Register", () => {
         await page.type('input[name="username"]', "usertest");
         await page.type('input[name="email"]', "test");
         await page.type('input[name="password"]', "test");
-        await page.click('button');
+        await page.click('button[id="register-button"]');
         const url = await page.url();
         expect(url).toBe("http://localhost:3000/register");
     });
     it("should not register - empty form", async () => {
         await page.goto("http://localhost:3000/register");
         await page.waitForSelector('input[name="username"]');
-        await page.click('button');
+        await page.click('button[id="register-button"]');
         await page.waitForSelector('p[id="register-error"]');
         const error = await page.$eval('p[id="register-error"]', (e) => e.textContent);
         expect(error).toBe("Request failed with status code 422");
