@@ -16,14 +16,7 @@ beforeAll(async () => {
   });
 });
 
-afterAll(async() => {
-  await request(app).delete("/user").send({
-    username: "test",
-    password: "test",
-    email: "test@gmail.com",
-  });
-    mongoose.connection.close();
-  });
+
 
 describe("user routes", () => {
   it("should get all users", async () => {
@@ -87,3 +80,13 @@ describe("login routes", () => {
 
 
 });
+
+
+afterAll(async() => {
+  await request(app).delete("/user").send({
+    username: "test",
+    password: "test",
+    email: "test@gmail.com",
+  });
+    mongoose.connection.close();
+  });
