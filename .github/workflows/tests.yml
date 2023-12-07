@@ -34,7 +34,8 @@ jobs:
       working-directory: ./
       run: |
         npm ci
-        npm start &
+        npm start & echo $! > .pidfile
+        sleep 3
 
     - name: Wait for app to start
       run: npx wait-on http://localhost:3000
@@ -51,3 +52,6 @@ jobs:
       env:
         JWT_SECRET_KEY: secret
       run: npm test
+
+    - name: Stop app
+      run: kill $(cat .pidfile)
