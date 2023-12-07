@@ -16,7 +16,9 @@ beforeAll(async () => {
   });
 });
 
-
+AfterAll(async() => {
+    mongoose.connection.close();
+  });
 
 describe("user routes", () => {
   it("should get all users", async () => {
@@ -77,13 +79,4 @@ describe("login routes", () => {
     expect(res.status).to.equal(200);
     expect(res.body).to.be.an("object");
   });
-
-
-
-
 });
-
-
-afterAll(async() => {
-    mongoose.connection.close();
-  });
