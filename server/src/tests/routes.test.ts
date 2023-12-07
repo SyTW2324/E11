@@ -17,8 +17,6 @@ beforeAll(async () => {
 });
 
 describe("user routes", () => {
- 
-
   it("should get all users", async () => {
     const res = await request(app).get("/user");
     expect(res.status).to.equal(200);
