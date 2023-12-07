@@ -6,21 +6,17 @@ import { after } from "mocha";
 import dotenv from "dotenv";
 import path from "path";
 
-dotenv.config({ path: path.resolve(__dirname, "../.env")});
-
-beforeAll(async () => {
-  const res = await request(app).post("/register").send({
-    username: "test",
-    password: "test",
-    email: "test@gmail.com",
-  });
-});
-
-afterAll(() => {
-    mongoose.connection.close();
-  });
+dotenv.config({ path: path.resolve(__dirname, "../.env") });
 
 describe("user routes", () => {
+  beforeAll(async () => {
+    const res = await request(app).post("/register").send({
+      username: "test",
+      password: "test",
+      email: "test@gmail.com",
+    });
+  });
+
   it("should get all users", async () => {
     const res = await request(app).get("/user");
     expect(res.status).to.equal(200);
