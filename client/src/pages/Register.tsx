@@ -105,7 +105,7 @@ function Register() {
                   Sign in
                 </button>
                 {auth.registerStatus === "rejected" ? (
-                  <p className="text-red-500 text-xs italic">
+                  <p className="error text-red-500 text-xs italic" id="register-error">
                     {auth.registerError}
                   </p>
                 ) : null}
