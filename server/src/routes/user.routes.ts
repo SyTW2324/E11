@@ -7,7 +7,7 @@ import JWT from "jsonwebtoken";
 export const userRouter = expresponses.Router();
 userRouter.use(expresponses.json());
 
-// GET /users buscar todos
+// GET /user buscar todos
 userRouter.get("/", async (_, response) => {
   try {
     const users = await User.find({});
@@ -20,7 +20,7 @@ userRouter.get("/", async (_, response) => {
   }
 });
 
-// GET /users/:id buscar por id
+// GET /user/:id buscar por id
 userRouter.get("/:id", async (request, response) => {
   try {
     const user = await User.findOne({
@@ -36,7 +36,7 @@ userRouter.get("/:id", async (request, response) => {
   }
 });
 
-// GET /users/:name buscar por nombre
+// GET /user/:name buscar por nombre
 userRouter.get("/name/:name", async (request, response) => {
   try {
     const user = await User.findOne({
@@ -72,5 +72,28 @@ userRouter.delete("/", async (request, response) => {
     response.status(200).send(deletedUser);
   } catch (error) {
     response.status(500).send(error);
+  }
+});
+
+// POST /user/addPoints/:id
+userRouter.post("/addPoints/:id", async (request, response) => {
+  try {
+    const user = await User.findOne({
+      _id: new mongodb.ObjectId(request.params.id),
+    });
+    if (!user) {
+      response.status(404).send(`User ${request.params.id} not found`);
+      return;
+    }
+    const updatedUser = await User.updateOne(
+      { _id: new mongodb.ObjectId(request.params.id) },
+      { $set: { points: user.points + 1 } }
+    );
+    if (!updatedUser) {
+      throw new Error("Error updating user");
+    }
+    response.status(200).send(updatedUser);
+  } catch (error) {
+    response.status(500).send(error)
   }
 });

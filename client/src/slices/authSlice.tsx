@@ -15,6 +15,8 @@ interface AuthState {
   username: string;
   email: string;
   password: string;
+  friends: string[];
+  points: number;
   _id: string;
   registerStatus: string;
   registerError: string;
@@ -29,6 +31,8 @@ const initialState: AuthState = {
   username: "",
   email: "",
   password: "",
+  friends: [],
+  points: 0,
   _id: "",
   registerStatus: "",
   registerError: "",
@@ -124,6 +128,8 @@ const authSlice = createSlice({
           token,
           username: user.username,
           email: user.email,
+          friends: user.friends,
+          points: user.points,
           _id: user._id,
           userLoaded: true,
         };

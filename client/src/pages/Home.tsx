@@ -17,7 +17,7 @@ function Home() {
       <Header />
       <main className="main-container">
         <h2> Adivina el animal de hoy </h2>
-        <GuessList />
+        <GuessList _id={auth._id} />
       </main>
       <Footer />
     </div>

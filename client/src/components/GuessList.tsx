@@ -5,7 +5,7 @@ import GuessForm from "./GuessForm";
 import "../styles/GuessList.css";
 import { AnimalInterface } from "../../../server/src/models/animals";
 
-function GuessList() {
+function GuessList(_id: any) {
   const [guessList, setGuessList] = useState<AnimalInterface[]>([]);
   const [randomAnimal, setRandomAnimal] = useState<AnimalInterface | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -44,6 +44,18 @@ function GuessList() {
     setGuessList((prevGuessList) => [...prevGuessList, newAnimal]);
     if (newAnimal.name === randomAnimal.name) {
       setFinished(true);
+      const addUserPoints = async () => {
+        try {
+          console.log(_id);
+          const response = await fetch(`http://localhost:5000/user/addPoints/${_id._id}`, { method: "POST" });
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+        } catch (error) {
+          console.error("There was a problem with the fetch operation:", error);
+        }
+      }
+      addUserPoints();
     }
   };
 
