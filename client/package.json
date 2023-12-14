@@ -40,7 +40,6 @@
     "start": "npm run watch:css & react-scripts start",
     "build": "npm run build:css && react-scripts build",
     "test": "react-scripts test --forceExit",
-    "prepare": "npm install ",
     "deploy": "gh-pages -d build",
     "eject": "react-scripts eject",
     "cypress:open": "cypress open",
