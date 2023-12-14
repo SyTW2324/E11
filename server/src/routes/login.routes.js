@@ -75,3 +75,41 @@ exports.loginRouter.post("/", (request, response) => __awaiter(void 0, void 0, v
         response.status(500).send("Error en el servidor");
     }
 }));
+// DELETE /login eliminar un user
+exports.loginRouter.delete("/", (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const schema = joi_1.default.object({
+            password: joi_1.default.string().required(),
+            email: joi_1.default.string().required().email(),
+        });
+        const validation = schema.validate(request.body);
+        if (validation.error) {
+            console.log("validation error " + validation.error);
+            response.status(422).send(validation.error);
+            return;
+        }
+        let user = yield user_1.User.findOne({ email: request.body.email });
+        if (!user) {
+            console.log("El email no existe");
+            response.status(404).send("El email no existe");
+            return;
+        }
+        const validPassword = yield bcrypt_1.default.compare(request.body.password, user.password);
+        if (!validPassword) {
+            console.log("La contraseña no es válida");
+            response.status(401).send("La contraseña no es válida");
+            return;
+        }
+        const result = yield user_1.User.deleteOne({ email: request.body.email });
+        if (!result) {
+            console.log("Error al eliminar el usuario");
+            response.status(500).send("Error al eliminar el usuario");
+            return;
+        }
+        response.status(200).send("Usuario eliminado");
+    }
+    catch (error) {
+        console.log(error);
+        response.status(500).send("Error en el servidor");
+    }
+}));

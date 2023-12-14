@@ -38,7 +38,7 @@ const mongodb = __importStar(require("mongodb"));
 const user_1 = require("../models/user");
 exports.userRouter = expresponses.Router();
 exports.userRouter.use(expresponses.json());
-// GET /user buscar todos
+// GET /users buscar todos
 exports.userRouter.get("/", (_, response) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const users = yield user_1.User.find({});
@@ -51,7 +51,7 @@ exports.userRouter.get("/", (_, response) => __awaiter(void 0, void 0, void 0, f
         response.status(500).send(error);
     }
 }));
-// GET /user/:id buscar por id
+// GET /users/:id buscar por id
 exports.userRouter.get("/:id", (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const user = yield user_1.User.findOne({
@@ -67,7 +67,7 @@ exports.userRouter.get("/:id", (request, response) => __awaiter(void 0, void 0, 
         response.status(500).send(error);
     }
 }));
-// GET /user/:name buscar por nombre
+// GET /users/:name buscar por nombre
 exports.userRouter.get("/name/:name", (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const user = yield user_1.User.findOne({
@@ -100,26 +100,6 @@ exports.userRouter.delete("/", (request, response) => __awaiter(void 0, void 0, 
             throw new Error("Error deleting user");
         }
         response.status(200).send(deletedUser);
-    }
-    catch (error) {
-        response.status(500).send(error);
-    }
-}));
-// POST /user/addPoints/:id
-exports.userRouter.post("/addPoints/:id", (request, response) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const user = yield user_1.User.findOne({
-            _id: new mongodb.ObjectId(request.params.id),
-        });
-        if (!user) {
-            response.status(404).send(`User ${request.params.id} not found`);
-            return;
-        }
-        const updatedUser = yield user_1.User.updateOne({ _id: new mongodb.ObjectId(request.params.id) }, { $set: { points: user.points + 1 } });
-        if (!updatedUser) {
-            throw new Error("Error updating user");
-        }
-        response.status(200).send(updatedUser);
     }
     catch (error) {
         response.status(500).send(error);

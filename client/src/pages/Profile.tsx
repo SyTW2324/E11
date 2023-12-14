@@ -1,14 +1,10 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import React from "react";
-import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { getUser } from "../slices/authSlice";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 
 function Profile() {
   let { username } = useParams();
