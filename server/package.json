@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node dist/server.js",
+    "start": "node server.js",
     "build": "tsc",
     "test": "cross-env NODE_ENV=test jest --testTimeout=5000 --forceExit"
   },
