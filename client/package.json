@@ -38,7 +38,7 @@
     "build:css": "npx tailwindcss -i src/index.css -o dist/index.css",
     "watch:css": "npx tailwindcss -i src/index.css -o dist/index.css -w",
     "start": "npm run watch:css & react-scripts start",
-    "build": "npm run prepare && npm run build:css && react-scripts build",
+    "build": "npm run build:css && react-scripts build",
     "test": "react-scripts test --forceExit",
     "prepare": "npm install ",
     "deploy": "gh-pages -d build",
