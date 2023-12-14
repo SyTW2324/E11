@@ -1,5 +1,3 @@
-import React from "react";
-import { useState, useEffect } from "react";
 import Category from "./Category";
 import "../styles/Guess.css";
 import { AnimalInterface } from "../../../server/src/models/animals";
