@@ -28,7 +28,7 @@ jobs:
     # Install dependencies server
     - name: Install dependencies Server
       working-directory: ./server
-      run: npm ci
+      run: npm ci && npm run build
 
     - name: Install dependencies and start app
       working-directory: ./

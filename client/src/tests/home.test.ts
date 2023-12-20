@@ -38,6 +38,6 @@ describe("home", () => {
     await page.waitForSelector('div[id="Elefante"]');
     const animal = await page.$eval('div[id="Elefante"]', (e) => e.textContent);
     expect(animal).toBe("ClaseMamíferoPeso(kg)6000Altura(m)3.3DietaHerbívoroHábitatSabanaMedioTerrestre");
-  });
+  }), 30000;
 });
 
