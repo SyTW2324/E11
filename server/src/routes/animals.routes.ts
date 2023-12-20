@@ -57,10 +57,6 @@ animalsRouter.get("/name_like/:name", async (request, response) => {
     const animal = await Animal.find({
       searchName: {$regex: request.params.name, $options: "i"},
     });
-    if (!animal) {
-      response.status(404).send(`Animal ${request.params.name} not found`);
-      return;
-    }
     response.status(200).send(animal);
   } catch (error) {
     response.status(500).send(error);
@@ -92,10 +88,6 @@ animalsRouter.delete("/:id", async (request, response) => {
     const animal = await Animal.findOne({
       _id: new mongodb.ObjectId(request.params.id),
     });
-    if (!animal) {
-      response.status(404).send(`Animal ${request.params.id} not found`);
-      return;
-    }
     const deletedAnimal = await Animal.deleteOne({
       _id: new mongodb.ObjectId(request.params.id),
     });

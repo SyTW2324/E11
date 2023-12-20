@@ -88,3 +88,22 @@ userRouter.post("/addPoints/:id", async (request, response) => {
     response.status(500).send(error);
   }
 });
+
+// POST /user
+
+userRouter.post("/", async (request, response) => {
+  try {
+    const user = await User.findOne({
+      username: request.body.username,
+    });
+    if (user) {
+      response.status(409).send(`User ${request.body.username} already exists`);
+      return;
+    }
+    const newUser = new User(request.body);
+    await newUser.save();
+    response.status(200).send(newUser);
+  } catch (error) {
+    response.status(500).send(error);
+  }
+});

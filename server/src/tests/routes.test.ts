@@ -16,6 +16,13 @@ beforeAll(async () => {
         return request(app).delete("/user/" + res.body._id);
       }
     });
+  await request(app)
+    .get("/user/name/test4")
+    .then((res) => {
+      if (res.body) {
+        return request(app).delete("/user/" + res.body._id);
+      }
+    });
 });
 
 afterAll(async () => {
@@ -28,6 +35,13 @@ afterAll(async () => {
     });
   await request(app)
     .get("/user/name/test2")
+    .then((res) => {
+      if (res.body) {
+        return request(app).delete("/user/" + res.body._id);
+      }
+    });
+  await request(app)
+    .get("/user/name/test4")
     .then((res) => {
       if (res.body) {
         return request(app).delete("/user/" + res.body._id);
@@ -99,6 +113,35 @@ describe("user routes", () => {
     expect(res.status).to.equal(500);
     expect(res.body).to.be.an("object");
   });
+
+  it("should create a user", async () => {
+    const res = await request(app).post("/user").send({
+      username: "test2",
+      password: "test2",
+      email: "test2@gmail.com",
+    });
+    expect(res.status).to.equal(200);
+    expect(res.body).to.be.an("object");
+  });
+  it("shouldnt create a user - email format", async () => {
+    const res = await request(app).post("/user").send({
+      username: "test3",
+      password: "test3",
+      email: "test3",
+    });
+    expect(res.status).to.equal(500);
+    expect(res.body).to.be.an("object");
+  });
+  it("shouldnt create a user - negative points", async () => {
+    const res = await request(app).post("/user").send({
+      username: "test3",
+      password: "test3",
+      email: "test3@gmail.com",
+      points: -10,
+    });
+    expect(res.status).to.equal(500);
+    expect(res.body).to.be.an("object");
+  });
 });
 
 describe("animal routes", () => {
@@ -133,9 +176,12 @@ describe("animal routes", () => {
   });
 
   it("shouldnt get animals by a similar name", async () => {
-    const res = await request(app).get("/animals/name_like/");
-    expect(res.status).to.equal(404);
-    expect(res.body).to.be.an("object");
+    const res = await request(app).get(
+      "/animals/name_like/XXXXXXXXXXXXXXXXXXXX"
+    );
+    expect(res.status).to.equal(200);
+    expect(res.body).to.be.an("array");
+    expect(res.body.length).to.equal(0);
   });
 
   it("should create an animal", async () => {
@@ -221,9 +267,9 @@ describe("animal routes", () => {
 describe("register routes", () => {
   it("should register a new user", async () => {
     const res = await request(app).post("/register").send({
-      username: "test2",
-      password: "test2",
-      email: "test2@gmail.com",
+      username: "test4",
+      password: "test4",
+      email: "test4@gmail.com",
     });
     expect(res.status).to.equal(200);
     expect(res.body).to.be.an("object");
