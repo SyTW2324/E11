@@ -26,10 +26,6 @@ userRouter.get("/:id", async (request, response) => {
     const user = await User.findOne({
       _id: new mongodb.ObjectId(request.params.id),
     });
-    if (!user) {
-      response.status(404).send(`User ${request.params.id} not found`);
-      return;
-    }
     response.status(200).send(user);
   } catch (error) {
     response.status(500).send(error);
@@ -58,11 +54,6 @@ userRouter.delete("/:id", async (request, response) => {
     const user = await User.findOne({
       _id: new mongodb.ObjectId(request.params.id),
     });
-    if (!user) {
-      response.status(404).send(`User ${request.params.id} not found`);
-      return;
-    }
-
     const deletedUser = await User.deleteOne({
       _id: new mongodb.ObjectId(request.params.id),
     });
