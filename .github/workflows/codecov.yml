@@ -1,0 +1,28 @@
+name: Coveralls
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  coveralls:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '14'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Upload coverage reports to Codecov
+      uses: codecov/codecov-action@v3
+      env:
+        CODECOV_TOKEN: 85dddca8-202f-4cc8-af98-52fa86de0597
+
