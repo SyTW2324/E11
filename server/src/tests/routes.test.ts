@@ -1,12 +1,6 @@
 import request from "supertest";
 import {expect} from "chai";
-import mongoose from "mongoose";
 import {app} from "../server";
-import {after} from "mocha";
-import dotenv from "dotenv";
-import path from "path";
-
-dotenv.config({path: path.resolve(__dirname, "../.env")});
 
 beforeAll(async () => {
   await request(app).post("/register").send({
@@ -38,7 +32,6 @@ afterAll(async () => {
         return request(app).delete("/user/" + res.body._id);
       }
     });
-  mongoose.connection.close();
 });
 
 describe("user routes", () => {
