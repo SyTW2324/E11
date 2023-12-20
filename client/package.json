@@ -39,7 +39,7 @@
     "watch:css": "npx tailwindcss -i src/index.css -o dist/index.css -w",
     "start": "npm run watch:css & react-scripts start",
     "build": "npm i && npm run build:css && react-scripts build",
-    "test": "react-scripts test --forceExit --detectOpenHandles --watchAll=false --coverage",
+    "test": "react-scripts test --forceExit --detectOpenHandles --watchAll=false",
     "deploy": "gh-pages -d build",
     "eject": "react-scripts eject",
     "cypress:open": "cypress open",
