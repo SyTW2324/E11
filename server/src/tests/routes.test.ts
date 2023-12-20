@@ -33,6 +33,13 @@ afterAll(async () => {
         return request(app).delete("/user/" + res.body._id);
       }
     });
+  await request(app)
+    .get("/animals/name/Test")
+    .then((res) => {
+      if (res.body) {
+        return request(app).delete("/animals/" + res.body._id);
+      }
+    });
   await mongoose.connection.close();
 });
 
@@ -128,6 +135,85 @@ describe("animal routes", () => {
   it("shouldnt get animals by a similar name", async () => {
     const res = await request(app).get("/animals/name_like/");
     expect(res.status).to.equal(404);
+    expect(res.body).to.be.an("object");
+  });
+
+  it("should create an animal", async () => {
+    const animal = {
+      name: "Test",
+      searchName: "testanimal",
+      image: "test.jpg",
+      class: "Mamífero",
+      weight: 10,
+      height: 20,
+      diet: "Herbívoro",
+      habitat: ["Bosque"],
+      medium: ["Tierra"],
+    };
+    const res = await request(app).post("/animals").send(animal);
+    expect(res.status).to.equal(200);
+    expect(res.body).to.be.an("object");
+  });
+
+  it("shouldnt create an animal - negative weight", async () => {
+    const animal = {
+      name: "Test2",
+      searchName: "testanimal",
+      image: "test.jpg",
+      class: "Mamífero",
+      weight: -10,
+      height: 20,
+      diet: "Herbívoro",
+      habitat: ["Bosque"],
+      medium: ["Tierra"],
+    };
+    const res = await request(app).post("/animals").send(animal);
+    expect(res.status).to.equal(500);
+    expect(res.body).to.be.an("object");
+  });
+  it("shouldnt create an animal - negative height", async () => {
+    const animal = {
+      name: "Test2",
+      searchName: "testanimal",
+      image: "test.jpg",
+      class: "Mamífero",
+      weight: 10,
+      height: -20,
+      diet: "Herbívoro",
+      habitat: ["Bosque"],
+      medium: ["Tierra"],
+    };
+    const res = await request(app).post("/animals").send(animal);
+    expect(res.status).to.equal(500);
+    expect(res.body).to.be.an("object");
+  });
+  it("shouldnt create an animal - already exists", async () => {
+    const animal = {
+      name: "Test",
+      searchName: "testanimal",
+      image: "test.jpg",
+      class: "Mamífero",
+      weight: 10,
+      height: 20,
+      diet: "Herbívoro",
+      habitat: ["Bosque"],
+      medium: ["Tierra"],
+    };
+    const res = await request(app).post("/animals").send(animal);
+    expect(res.status).to.equal(409);
+    expect(res.body).to.be.an("object");
+  });
+
+  it("should delete an animal", async () => {
+    const res = await request(app).get("/animals/name/Test");
+    const res2 = await request(app).delete("/animals/" + res.body._id);
+    expect(res2.status).to.equal(200);
+    expect(res2.body).to.be.an("object");
+  });
+
+  it("shouldnt delete an animal", async () => {
+    const res = await request(app).delete("/animals/1234");
+    expect(res.status).to.equal(500);
     expect(res.body).to.be.an("object");
   });
 });
