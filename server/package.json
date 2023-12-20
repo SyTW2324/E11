@@ -10,7 +10,10 @@
   },
   "jest": {
     "preset": "ts-jest",
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "testMatch": [
+      "**/tests/**/*.test.ts"
+    ]
   },
   "keywords": [],
   "author": "Febe Fariña Aguirre y Daniel Glez. de Chávez Glez.",

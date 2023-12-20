@@ -1,12 +1,12 @@
 import request from "supertest";
-import { expect } from "chai";
+import {expect} from "chai";
 import mongoose from "mongoose";
-import { app } from "../server";
-import { after } from "mocha";
+import {app} from "../server";
+import {after} from "mocha";
 import dotenv from "dotenv";
 import path from "path";
 
-dotenv.config({ path: path.resolve(__dirname, "../.env") });
+dotenv.config({path: path.resolve(__dirname, "../.env")});
 
 beforeAll(async () => {
   await request(app).post("/register").send({
@@ -14,15 +14,30 @@ beforeAll(async () => {
     password: "test",
     email: "test@gmail.com",
   });
+  await request(app)
+    .get("/user/name/test2")
+    .then((res) => {
+      if (res.body) {
+        return request(app).delete("/user/" + res.body._id);
+      }
+    });
 });
 
 afterAll(async () => {
-  await request(app).get("/user/test").then((res) => {
-    return request(app).delete("/user/" + res.body._id);
-  });
-  await request(app).get("/user/test2").then((res) => {
-    return request(app).delete("/user/" + res.body._id);
-  });
+  await request(app)
+    .get("/user/name/test")
+    .then((res) => {
+      if (res.body) {
+        return request(app).delete("/user/" + res.body._id);
+      }
+    });
+  await request(app)
+    .get("/user/name/test2")
+    .then((res) => {
+      if (res.body) {
+        return request(app).delete("/user/" + res.body._id);
+      }
+    });
   mongoose.connection.close();
 });
 
@@ -34,9 +49,9 @@ describe("user routes", () => {
   });
 
   it("should delete a user", async () => {
-    const res = await request(app).get("/user/test").then((res) => {
-      return request(app).delete("/user/" + res.body._id);
-    });
+    const res = await request(app).get("/user");
+    expect(res.status).to.equal(200);
+    expect(res.body).to.be.an("array");
   });
 });
 

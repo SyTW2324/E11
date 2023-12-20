@@ -18,7 +18,8 @@
     "build:client": "cd client && npm run build",
     "test": "npm run prepare && concurrently \"npm run test:client\" \"npm run test:server\"",
     "test:client": "cd client && npm test",
-    "test:server": "cd server && npm test"
+    "test:server": "cd server && npm test",
+    "coverage": "nyc npm run test && nyc report --reporter=text-lcov | coveralls"
   },
   "keywords": [],
   "author": "",
@@ -31,11 +32,13 @@
     "@vercel/speed-insights": "^1.0.2",
     "concurrently": "^8.2.2",
     "cors": "^2.8.5",
+    "coveralls": "^3.1.1",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.2",
     "lambdatest-cypress-cli": "^3.0.23",
     "mongodb": "^6.2.0",
+    "nyc": "^15.1.0",
     "puppeteer": "^21.6.0",
     "react": "^18.2.0",
     "react-router-dom": "^6.18.0"

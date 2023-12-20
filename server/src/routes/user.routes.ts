@@ -1,7 +1,7 @@
 import * as expresponses from "express";
 import * as mongodb from "mongodb";
 import bcrypt from "bcrypt";
-import { User } from "../models/user";
+import {User} from "../models/user";
 import JWT from "jsonwebtoken";
 
 export const userRouter = expresponses.Router();
@@ -53,18 +53,18 @@ userRouter.get("/name/:name", async (request, response) => {
 });
 
 // DELETE
-userRouter.delete("/", async (request, response) => {
+userRouter.delete("/:id", async (request, response) => {
   try {
     const user = await User.findOne({
-      username: request.body.username,
+      _id: new mongodb.ObjectId(request.params.id),
     });
     if (!user) {
-      response.status(404).send(`User ${request.body.username} not found`);
+      response.status(404).send(`User ${request.params.id} not found`);
       return;
     }
 
     const deletedUser = await User.deleteOne({
-      username: request.body.username,
+      _id: new mongodb.ObjectId(request.params.id),
     });
     if (!deletedUser) {
       throw new Error("Error deleting user");
@@ -86,14 +86,14 @@ userRouter.post("/addPoints/:id", async (request, response) => {
       return;
     }
     const updatedUser = await User.updateOne(
-      { _id: new mongodb.ObjectId(request.params.id) },
-      { $set: { points: user.points + 1 } }
+      {_id: new mongodb.ObjectId(request.params.id)},
+      {$set: {points: user.points + 1}}
     );
     if (!updatedUser) {
       throw new Error("Error updating user");
     }
     response.status(200).send(updatedUser);
   } catch (error) {
-    response.status(500).send(error)
+    response.status(500).send(error);
   }
 });
