@@ -42,7 +42,7 @@ jobs:
 
     - name: Run tests client
       working-directory: ./client
-      run: npm test
+      run: npm test --coverage
 
     - name: Ensure port 5000 is free
       run: sudo kill $(sudo lsof -t -i:5000) || true
@@ -51,7 +51,7 @@ jobs:
       working-directory: ./server
       env:
         JWT_SECRET_KEY: secret
-      run: npm test
+      run: npm test --coverage
 
     - name: Upload coverage reports to Codecov
       uses: codecov/codecov-action@v3
