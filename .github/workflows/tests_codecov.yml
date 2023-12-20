@@ -1,4 +1,4 @@
-name: CI and CD
+name: CI and CD and codecov
 
 on:
   push:
@@ -52,6 +52,11 @@ jobs:
       env:
         JWT_SECRET_KEY: secret
       run: npm test
+
+    - name: Upload coverage reports to Codecov
+      uses: codecov/codecov-action@v3
+      env:
+        CODECOV_TOKEN: 85dddca8-202f-4cc8-af98-52fa86de0597
 
     - name: Stop app
       run: kill $(cat .pidfile)
