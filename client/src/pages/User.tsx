@@ -1,16 +1,18 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { getUser } from "../slices/authSlice";
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
+import { getUser } from "../slices/authSlice";
+import { set } from "mongoose";
 
-function User() {
+function Profile() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const auth = useSelector((state: any) => state.auth);
 
   const [user, setUser] = useState({
@@ -29,25 +31,46 @@ function User() {
 
   useEffect(() => {
     if (auth._id) {
-      dispatch(getUser() as any);
+      try {
+        const getUser = async () => {
+          const response = await fetch(
+            `http://localhost:5000/user/${auth._id}`
+          );
+          const data = await response.json();
+          setUser(data);
+        };
+        getUser();
+        console.log(user);
+      } catch (error) {
+        console.error("There was a problem with the fetch operation:", error);
+      }
     }
-  }, [auth._id, dispatch]);
+  }, []);
+
+  console.log("user", user);
+
+  const [ranking, setRanking] = useState();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    setUser({
-      username: auth.username,
-      email: auth.email,
-      password: "",
-      friends: auth.friends,
-      points: auth.points,
-    });
-  }, [auth.username, auth.email]);
+    const getRanking = async () => {
+      setIsLoading(true);
+      try {
+        const response = await fetch("http://localhost:5000/user");
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const data = await response.json();
+        data.sort((a: any, b: any) => b.points - a.points);
+        setRanking(data.findIndex((user: any) => user._id === auth._id) + 1);
+      } catch (error) {
+        console.error("There was a problem with the fetch operation:", error);
+      }
+      setIsLoading(false);
+    };
 
-  const handleSubmit = async (e: any) => {
-    e.preventDefault();
-
-    toast.success("Usuario actualizado");
-  };
+    getRanking();
+  }, []);
 
   return (
     <>
@@ -56,19 +79,17 @@ function User() {
         <div className="p-8 mt-24 main-container">
           <div className="grid grid-cols-1 md:grid-cols-3">
             <div className="grid grid-cols-3 text-center order-last md:order-first mt-20 md:mt-0">
-              <div className="bg-burlywood rounded-full">
+              <div className="bg-burlywood rounded-full mr-4 p-4">
                 <p className="font-bold text-gray-700 text-xl">{user.points}</p>
-                <p className="text-gray-400">Puntos</p>
+                <p className="text-gray-600">Puntos</p>
               </div>
-              <div className="bg-burlywood rounded-full">
-                <p className="font-bold text-gray-700 text-xl">
-                  {user.friends.length}
-                </p>
-                <p className="text-gray-400">Amigos</p>
+              <div className="bg-burlywood rounded-full mr-4 p-4">
+                <p className="font-bold text-gray-700 text-xl">{user.friends.length}</p>
+                <p className="text-gray-600">Amigos</p>
               </div>
-              <div className="bg-burlywood rounded-full">
-                <p className="font-bold text-gray-700 text-xl">0</p>
-                <p className="text-gray-400">Ranking mundial</p>
+              <div className="bg-burlywood rounded-full mr-4 p-4">
+                <p className="font-bold text-gray-700 text-xl">#{ranking}</p>
+                <p className="text-gray-600">Ranking mundial</p>
               </div>
             </div>
             <div className="relative">
@@ -89,16 +110,15 @@ function User() {
             </div>
           </div>
           <div className="mt-20 text-center pb-12">
-            <h1 className="text-4xl font-medium text-gray-700">
+            <h1 className="text-6xl font-bold text-white-1000">
               {user.username}
             </h1>
           </div>
         </div>
-
         <Footer />
       </div>
     </>
   );
 }
 
-export default User;
+export default Profile;
