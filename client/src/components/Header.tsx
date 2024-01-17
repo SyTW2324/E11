@@ -35,20 +35,25 @@ function Header() {
           <img src={medal} alt="ranking-icon" />
         </Link>
       </div>
-      <div className="logout-icon">
-        {auth._id ? (
+      {auth._id ? (
+        <div className="logout-icon cursor-pointer">
           <Logout
             onClick={() => {
               toast.success("Sesión cerrada con éxito");
               dispatch(logoutUser(null) as any);
             }}
           >
-            <img id="logout" src={exit} alt="logout-icon" />
+            <img
+              id="logout"
+              src={exit}
+              alt="logout-icon"
+              className="logout-icon-img"
+            />{" "}
           </Logout>
-        ) : (
-          <></>
-        )}
-      </div>
+        </div>
+      ) : (
+        <></>
+      )}
     </div>
   );
 }

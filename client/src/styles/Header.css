@@ -48,7 +48,7 @@
 
 .ranking-icon,
 .login-icon,
-.logout-icon {
+.logout-icon img {
     display: flex;
     border-radius: 50%;
     justify-content: center;
@@ -62,7 +62,7 @@
 
 .ranking-icon img,
 .login-icon img,
-.logout-icon img {
+.logout-icon-img {
     height: 100%;
     width: 100%;
 }
